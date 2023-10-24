@@ -1,1 +1,24 @@
-<p>posts works!</p>
+<div *ngIf="posts.length > 0">
+  <div  *ngFor="let post of posts">
+    <div class="m-2 p-2 border-black border-2 rounded-md">
+
+      <div class="flex items-end">
+        <h3 class="text-lg">{{ post.title }}</h3>
+        <span class="ml-4">{{ post.published_at | date: 'short'}}</span>
+      </div>
+
+
+      <div class="p-2">
+        <button (click)="toggleDescription(post)">Description</button>
+        <p *ngIf="post.description_active" [innerHTML]="post.description"></p>
+      </div>
+
+      <audio src="{{post.audio}}" controls>
+
+      </audio>
+    </div>
+
+  </div>
+</div>
+
+<button >Load more</button>

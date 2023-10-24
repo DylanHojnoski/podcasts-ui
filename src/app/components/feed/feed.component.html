@@ -1,25 +1,10 @@
-<p>feed works!</p>
 
 <div *ngFor="let item of feed">
-  <div (click)="selectFeed(item.id)" class="flex p-2">
-    <img src={{item.image}} alt={{item.name}} class="w-10 h-10">
-    <h2>{{ item.name }}</h2>
+  <div (click)="selectFeed(item.id)" [ngClass]="{'sticky top-0' : posts.length > 0 && posts[0].feed_id == item.id}" class="flex items-center bg-gray-200 p-2">
+    <img src={{item.image}} alt={{item.name}} class="w-20 h-20">
+    <h2 class="ml-2">{{ item.name }}</h2>
   </div>
 
-  <div *ngIf="posts.length > 0 && posts[0].feed_id == item.id">
-    <div  *ngFor="let post of posts">
-      <div class="m-2 p-2 border-black border-2">
-
-        <h3>{{ post.title }}</h3>
-        <span>{{ post.published_at }}</span>
-        <p [innerHTML]="post.description"></p>
-
-        <audio src="{{post.audio}}" controls>
-
-        </audio>
-      </div>
-
-    </div>
-  </div>
+  <app-posts *ngIf="posts.length > 0 && posts[0].feed_id == item.id" [posts]="posts"></app-posts>
 
 </div>

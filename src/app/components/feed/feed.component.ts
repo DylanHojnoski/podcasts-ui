@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Feed } from 'src/app/models/feed';
 import { FeedService } from 'src/app/services/feed.service';
 import { Post } from 'src/app/models/post';
@@ -21,7 +21,13 @@ export class FeedComponent implements OnInit {
   }
 
   selectFeed(id: string) {
-    this.postService.getFeedPosts(id).subscribe(results => {this.posts = results})
+    if (this.posts.length > 0 && this.posts[0].feed_id == id) {
+      this.posts = new Array;
+
+    }
+    else {
+      this.postService.getFeedPosts(id).subscribe(results => {this.posts = results})
+    }
   }
 
 }
