@@ -13,3 +13,17 @@ export const loadFeedsFailure = createAction(
   props<{ error: string }>()
 )
 
+export const addFeed = createAction(
+  'Add Feed',
+  props<{ url: string }>()
+);
+
+export const addFeedSuccess = createAction(
+  'Add Feed Success',
+  props<{ feed: Feed }>()
+);
+
+export const addFeedFailure = createAction(
+  'Add Feed Failure',
+  props<{ error: string }>()
+)

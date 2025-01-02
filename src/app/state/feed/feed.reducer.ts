@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { loadFeeds, loadFeedsFailure, loadFeedsSuccess } from "./feed.action";
+import { addFeed, addFeedFailure, addFeedSuccess, loadFeeds, loadFeedsFailure, loadFeedsSuccess } from "./feed.action";
 import { Feed } from "src/app/models/feed";
 
 export interface FeedState {
@@ -24,6 +24,19 @@ export const feedReducer = createReducer(
   })),
 
   on(loadFeedsFailure, (state, { error }) => ({
+    ...state,
+    error: error,
+  })),
+
+  on(addFeed, (state) => ({...state})),
+
+  on(addFeedSuccess, (state, { feed }) => ({
+    ...state,
+    feeds: state.feeds.concat(feed),
+    error: null,
+  })),
+
+  on(addFeedFailure, (state, { error }) => ({
     ...state,
     error: error,
   })),

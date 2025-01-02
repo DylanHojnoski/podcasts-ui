@@ -1,3 +1,7 @@
+<div class="bg-gray-200 p-3">
+  <input type="text" name="" [(ngModel)]="newFeed" placeholder="RSS URL">
+  <button (click)="addFeed()">Add</button>
+</div>
 <div *ngFor="let item of allFeeds">
   <div (click)="selectFeed(item.id)" [ngClass]="{'sticky top-0' : posts.length > 0 && posts[0].feed_id == item.id}" class="flex items-center bg-gray-200 p-2">
     <img src={{item.image}} alt={{item.name}} class="w-20 h-20">

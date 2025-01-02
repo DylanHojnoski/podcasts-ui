@@ -6,5 +6,6 @@ export class Post {
   published_at?: string;
   url?: string;
   audio?: string;
+  duration?: string;
   feed_id?: string;
 }

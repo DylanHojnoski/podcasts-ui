@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { FeedService } from "src/app/services/feed.service";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { loadFeeds, loadFeedsFailure, loadFeedsSuccess } from "./feed.action";
+import { addFeed, addFeedFailure, addFeedSuccess, loadFeeds, loadFeedsFailure, loadFeedsSuccess } from "./feed.action";
 import { catchError, from, map, of, switchMap } from "rxjs";
 
 @Injectable()
@@ -21,6 +21,21 @@ export class FeedEffects {
                                          }
                                             ),
                                            catchError((error) => of(loadFeedsFailure({ error })))
+                                       )
+                                      )
+                           )
+                          );
+
+  addFeed = createEffect(() =>
+                           this.actions.pipe(
+                             ofType(addFeed),
+                             switchMap((props) =>
+                                       from(this.feedService.addFeed(props.url)).pipe(
+                                         map((feed) => {
+                                           return addFeedSuccess({feed: feed});
+                                         }
+                                            ),
+                                           catchError((error) => of(addFeedFailure({ error })))
                                        )
                                       )
                            )

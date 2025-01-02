@@ -13,6 +13,7 @@ import { PlayingComponent } from './components/playing/playing.component';
 import { playingReducer } from './state/playing/playing.reducer';
 import { postsReducer } from './state/posts/posts.reducer';
 import { PostEffects } from './state/posts/posts.effects';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PostEffects } from './state/posts/posts.effects';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     StoreModule.forRoot({feed: feedReducer, playing: playingReducer, posts: postsReducer}),
     EffectsModule.forRoot([FeedEffects, PostEffects])
   ],
