@@ -25,7 +25,6 @@ export class FeedComponent implements OnInit {
     this.store.dispatch(loadFeeds());
 
     this.store.select(selectAllFeeds).subscribe((feeds) => {
-      console.log(feeds);
       this.allFeeds = feeds;
     })
 

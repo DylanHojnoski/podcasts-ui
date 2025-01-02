@@ -29,6 +29,6 @@ export const playingReducer = createReducer(
 
   on(removeFromQueue, (state) => ({
     ...state,
-    queue: state.queue.slice(1,-1)
+    queue: state.queue.slice(1)
   }))
 )
