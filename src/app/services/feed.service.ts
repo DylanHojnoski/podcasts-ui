@@ -13,7 +13,7 @@ export class FeedService {
   constructor(private http: HttpClient) {}
 
   public getFeed() : Observable<Feed[]> {
-    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}`)
+    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}`);
   }
 
 }

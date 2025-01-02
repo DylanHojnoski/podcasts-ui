@@ -1,8 +1,12 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Feed } from 'src/app/models/feed';
-import { FeedService } from 'src/app/services/feed.service';
+import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
-import { PostService } from 'src/app/services/post.service';
+import { Store } from '@ngrx/store';
+import { loadFeeds } from 'src/app/state/feed/feed.action';
+import { selectAllFeeds } from 'src/app/state/feed/feed.selector';
+import { Feed } from 'src/app/models/feed';
+import { AppState } from 'src/app/state/app.state';
+import { selectPosts } from 'src/app/state/posts/posts.selector';
+import { loadPosts, loadPostsAfterDate } from 'src/app/state/posts/posts.action';
 
 @Component({
   selector: 'app-feed',
@@ -11,23 +15,41 @@ import { PostService } from 'src/app/services/post.service';
 })
 
 export class FeedComponent implements OnInit {
-  feed: Feed[] = new Array;
-  posts: Post[] = new Array;
+  allFeeds: Feed[] = [];
+  posts: Post[] = [];
 
-  public constructor(private feedService: FeedService, private postService: PostService) { }
+  public constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.feedService.getFeed().subscribe(results => {this.feed = results})
+    this.store.dispatch(loadFeeds());
+
+    this.store.select(selectAllFeeds).subscribe((feeds) => {
+      console.log(feeds);
+      this.allFeeds = feeds;
+    })
+
+    this.store.select(selectPosts).subscribe((posts) => {
+      this.posts = posts;
+    });
   }
 
   selectFeed(id: string) {
     if (this.posts.length > 0 && this.posts[0].feed_id == id) {
-      this.posts = new Array;
-
+      this.posts = [];
     }
     else {
-      this.postService.getFeedPosts(id).subscribe(results => {this.posts = results})
+      this.store.dispatch(loadPosts({ feedId: id }));
     }
   }
 
+  loadMore(id: string) {
+    if (this.posts.length > 0) {
+      const date = this.posts[this.posts.length-1].published_at;
+      if (date != undefined) {
+        this.store.dispatch(loadPostsAfterDate({ feedId: id, date: date}))
+      }
+    }
+
+  }
 }
+

@@ -1,0 +1,8 @@
+<div *ngIf="playing != undefined" class="flex flex-col w-full justify-center bg-gray-50">
+  <div class="w-full flex justify-between p-1">
+    <h2>{{playing.title}}</h2>
+    <button (click)="clear()">X</button>
+  </div>
+  <audio [src]="playing?.audio" controls autoplay>
+  </audio>
+</div>

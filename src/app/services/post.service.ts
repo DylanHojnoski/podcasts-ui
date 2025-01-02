@@ -16,4 +16,8 @@ export class PostService {
     return this.http.get<Post[]>(`${environment.apiUrl}/${this.url}/${id}`)
   }
 
+  public getFeedPostsBeforeDate(id: string, date: string) : Observable<Post[]> {
+    return this.http.get<Post[]>(`${environment.apiUrl}/${this.url}/${id}/${date}`)
+   }
+
 }

@@ -7,5 +7,4 @@ export class Post {
   url?: string;
   audio?: string;
   feed_id?: string;
-  description_active: boolean = false;
 }
