@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Post } from 'src/app/models/post';
 import { AppState } from 'src/app/state/app.state';
-import { setPlaying } from 'src/app/state/playing/playing.action';
+import { addToQueue, setPlaying } from 'src/app/state/playing/playing.action';
 
 @Component({
   selector: 'app-posts',
@@ -37,7 +37,11 @@ export class PostsComponent {
   }
 
   play(post: Post) {
-    this.store.dispatch(setPlaying({playing: post}));
+    this.store.dispatch(setPlaying({playing: post }));
+  }
+
+  addToQueue(post: Post) {
+    this.store.dispatch(addToQueue({ post: post }));
   }
 
 }

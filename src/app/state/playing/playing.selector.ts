@@ -8,3 +8,8 @@ export const selectPlaying = createSelector(
   playingState,
   (state: PlayingState) => state.playing
 );
+
+export const selectQueue = createSelector(
+  playingState,
+  (state: PlayingState) => state.queue
+)

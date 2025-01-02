@@ -1,6 +1,10 @@
 <div *ngIf="playing != undefined" class="flex flex-col w-full justify-center bg-gray-50">
-  <div class="w-full flex justify-between p-1">
+  <div class="w-full flex justify-between p-1 px-3">
     <h2>{{playing.title}}</h2>
+    <div *ngIf="queue.length > 0" class="w-64 truncate">
+      <button (click)="next()">Next:</button>
+      {{queue[0].title}}
+    </div>
     <button (click)="clear()">X</button>
   </div>
   <audio [src]="playing?.audio" controls autoplay>
