@@ -1,3 +1,4 @@
+import { Category } from "./category";
 import { Post } from "./post";
 
 export class Feed {
@@ -6,4 +7,5 @@ export class Feed {
   image?: string;
   url?: string;
   posts: Post[] = [];
+  categories: Category[] = [];
 }

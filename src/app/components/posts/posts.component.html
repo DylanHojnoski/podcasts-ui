@@ -1,15 +1,19 @@
 <div>
-    <div class="m-2 p-2 border-black border-2 rounded-md">
+    <div class="m-2 p-2 border-black border-b-2 ">
 
-      <div class="flex items-end">
+      <div class="flex items-center">
         <h3 class="text-lg">{{ post.title }}</h3>
-        <span class="ml-4">{{ post.published_at | date: 'short'}}</span>
+        <span class="ml-4">{{ post.published_at | date: 'shortDate'}}</span>
       </div>
 
       <div class="p-2">
-        <button (click)="toggleDescription()">Description </button>
-        <span *ngIf="!descriptionActive">&#8964;</span>
-        <span *ngIf="descriptionActive">&#8963;</span>
+        <button (click)="toggleDescription()" class="flex">
+          Description
+          <div class="ml-2 self-center">
+          <img src="../../../assets/down-arrow.png" class="w-2" *ngIf="!descriptionActive" />
+          <img src="../../../assets/up-arrow.png" class="w-2" *ngIf="descriptionActive" />
+          </div>
+        </button>
         <p *ngIf="descriptionActive" [innerHTML]="post.description"></p>
       </div>
 
