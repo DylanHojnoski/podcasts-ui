@@ -17,6 +17,13 @@ import { FormsModule } from '@angular/forms';
 import { FeedsComponent } from './components/feeds/feeds.component';
 import { AddFeedComponent } from './components/add-feed/add-feed.component';
 import { ExploreCategoryComponent } from './components/explore-category/explore-category.component';
+import { RouterModule, Routes } from '@angular/router'
+import { HomeComponent } from './components/home/home.component';
+
+const routes: Routes = [
+  { path: 'home', component: HomeComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full'}
+]
 
 @NgModule({
   declarations: [
@@ -26,14 +33,16 @@ import { ExploreCategoryComponent } from './components/explore-category/explore-
     PlayingComponent,
     FeedsComponent,
     AddFeedComponent,
-    ExploreCategoryComponent
+    ExploreCategoryComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     StoreModule.forRoot({feed: feedReducer, playing: playingReducer, posts: postsReducer}),
-    EffectsModule.forRoot([FeedEffects, PostEffects])
+    EffectsModule.forRoot([FeedEffects, PostEffects]),
+    RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent]
 })

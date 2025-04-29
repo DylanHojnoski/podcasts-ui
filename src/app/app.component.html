@@ -1,8 +1,5 @@
 <div class="w-full h-full">
   <app-add-feed></app-add-feed>
- <!--<app-feeds class="w-full h-full"></app-feeds>-->
- <div *ngFor="let category of categories">
-   <app-explore-category [category]="category.id"></app-explore-category>
- </div>
+<router-outlet></router-outlet>
   <app-playing class="fixed bottom-0 w-full"></app-playing>
 </div>
