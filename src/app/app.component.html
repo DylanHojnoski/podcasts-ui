@@ -1,2 +1,8 @@
-<app-feed></app-feed>
-<app-playing class="fixed bottom-0 w-full"></app-playing>
+<div class="w-full h-full">
+  <app-add-feed></app-add-feed>
+ <!--<app-feeds class="w-full h-full"></app-feeds>-->
+ <div *ngFor="let category of categories">
+   <app-explore-category [category]="category.id"></app-explore-category>
+ </div>
+  <app-playing class="fixed bottom-0 w-full"></app-playing>
+</div>

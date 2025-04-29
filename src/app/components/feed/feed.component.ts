@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { Store } from '@ngrx/store';
-import { addFeed, loadFeeds } from 'src/app/state/feed/feed.action';
-import { selectAllFeeds } from 'src/app/state/feed/feed.selector';
 import { Feed } from 'src/app/models/feed';
 import { AppState } from 'src/app/state/app.state';
 import { selectPosts } from 'src/app/state/posts/posts.selector';
@@ -15,19 +13,12 @@ import { loadPosts, loadPostsAfterDate } from 'src/app/state/posts/posts.action'
 })
 
 export class FeedComponent implements OnInit {
-  allFeeds: Feed[] = [];
+  @Input() feed: Feed | undefined = undefined;
   posts: Post[] = [];
-  newFeed: string = "";
 
   public constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.store.dispatch(loadFeeds());
-
-    this.store.select(selectAllFeeds).subscribe((feeds) => {
-      this.allFeeds = feeds;
-    })
-
     this.store.select(selectPosts).subscribe((posts) => {
       this.posts = posts;
     });
@@ -51,11 +42,5 @@ export class FeedComponent implements OnInit {
     }
   }
 
-  addFeed() {
-    console.log("Click " + this.newFeed);
-    if (this.newFeed.length > 0) {
-      this.store.dispatch(addFeed({ url: this.newFeed }));
-    }
-  }
 }
 

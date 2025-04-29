@@ -8,3 +8,8 @@ export const selectAllFeeds = createSelector(
   feedState,
   (state: FeedState) => state.feeds
 );
+
+export const selectCategoryFeeds = createSelector(
+  feedState,
+  (state: FeedState) => state.categories
+);

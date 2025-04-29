@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { Feed } from '../models/feed'
+import { Category } from '../models/category'
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,14 @@ export class FeedService {
 
   public getFeed() : Observable<Feed[]> {
     return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}`);
+  }
+
+  public getFeedForCategory(categoryID: string) : Observable<Feed[]> {
+    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/category/${categoryID}`);
+  }
+
+  public getFeedCategories() : Observable<Category[]> {
+    return this.http.get<Category[]>(`${environment.apiUrl}/${this.url}/category`);
   }
 
   public addFeed(url: string) : Observable<Feed> {

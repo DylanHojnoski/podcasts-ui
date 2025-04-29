@@ -1,31 +1,26 @@
-<div class="bg-gray-200 p-3">
-  <input type="text" name="" [(ngModel)]="newFeed" placeholder="RSS URL">
-  <button (click)="addFeed()">Add</button>
-</div>
-<div *ngFor="let item of allFeeds">
-  <div (click)="selectFeed(item.id)" [ngClass]="{'sticky top-0' : posts.length > 0 && posts[0].feed_id == item.id}" class="flex items-center bg-gray-200 justify-between p-2">
+<div *ngIf="feed != undefined" >
+  <div (click)="selectFeed(feed.id)" [ngClass]="{'sticky top-0' : posts.length > 0 && posts[0].feed_id == feed.id}" class="flex items-center bg-gray-200 justify-between p-2">
     <div class="flex">
-    <img src={{item.image}} alt={{item.name}} class="w-20 h-20">
-    <div class="flex flex-col">
-      <h2 class="ml-2">{{ item.name }}</h2>
-      <div class="flex flex-wrap gap-2 pl-4">
-        <div *ngFor="let category of item.categories">
-          <span class="bg-sky-50 rounded-lg p-1 whitespace-nowrap">{{ category.title }}</span>
+      <img src={{feed.image}} alt={{feed.name}} class="w-20 h-20">
+      <div class="flex flex-col">
+        <h2 class="ml-2">{{ feed.name }}</h2>
+        <div class="flex flex-wrap gap-2 pl-4">
+          <div *ngFor="let category of feed.categories">
+            <span class="bg-sky-50 rounded-lg p-1 whitespace-nowrap">{{ category.title }}</span>
+          </div>
         </div>
       </div>
     </div>
-    </div>
     <div>
-      <img src="../../../assets/down-arrow.png" class="w-6" *ngIf="posts.length == 0 || posts[0].feed_id != item.id" />
-      <img src="../../../assets/up-arrow.png" class="w-6" *ngIf="posts.length > 0 && posts[0].feed_id == item.id" />
+      <img src="../../../assets/down-arrow.png" class="w-6" *ngIf="posts.length == 0 || posts[0].feed_id != feed.id" />
+      <img src="../../../assets/up-arrow.png" class="w-6" *ngIf="posts.length > 0 && posts[0].feed_id == feed.id" />
     </div>
   </div>
 
-  <div *ngIf="posts.length > 0  && posts[0].feed_id == item.id">
+  <div *ngIf="posts.length > 0  && posts[0].feed_id == feed.id">
     <div *ngFor="let post of posts">
-      <app-posts *ngIf="post.feed_id == item.id"[post]="post"></app-posts>
+      <app-posts *ngIf="post.feed_id == feed.id"[post]="post"></app-posts>
     </div>
-    <button (click)="loadMore(item.id)">Load more</button>
+    <button (click)="loadMore(feed.id)">Load more</button>
   </div>
 </div>
-

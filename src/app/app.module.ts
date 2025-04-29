@@ -14,13 +14,19 @@ import { playingReducer } from './state/playing/playing.reducer';
 import { postsReducer } from './state/posts/posts.reducer';
 import { PostEffects } from './state/posts/posts.effects';
 import { FormsModule } from '@angular/forms';
+import { FeedsComponent } from './components/feeds/feeds.component';
+import { AddFeedComponent } from './components/add-feed/add-feed.component';
+import { ExploreCategoryComponent } from './components/explore-category/explore-category.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FeedComponent,
     PostsComponent,
-    PlayingComponent
+    PlayingComponent,
+    FeedsComponent,
+    AddFeedComponent,
+    ExploreCategoryComponent
   ],
   imports: [
     BrowserModule,
