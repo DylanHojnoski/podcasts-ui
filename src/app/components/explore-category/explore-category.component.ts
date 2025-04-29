@@ -15,6 +15,7 @@ import { selectAllFeeds, selectCategoryFeeds } from 'src/app/state/feed/feed.sel
 export class ExploreCategoryComponent {
 
   public constructor(private store: Store<AppState>, private feedService: FeedService) { }
+
   @Input() category = "";
   feeds: Feed[] = [];
   categories: Category[] = [];

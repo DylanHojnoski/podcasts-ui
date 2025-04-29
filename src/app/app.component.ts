@@ -12,13 +12,5 @@ import { selectCategoryFeeds } from './state/feed/feed.selector';
 })
 export class AppComponent {
   title = 'podcasts-ui';
-  categories: Category[] = [];
-
-  public constructor(private store: Store<AppState>) { }
-
-  ngOnInit(): void {
-    this.store.dispatch(loadFeedCategories());
-    this.store.select(selectCategoryFeeds).subscribe(categories => this.categories = categories);
-  }
 
 }
