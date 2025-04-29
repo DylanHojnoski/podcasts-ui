@@ -1,5 +1,5 @@
-<div *ngFor="let item of feeds">
-  <app-feed [feed]="item"></app-feed>
+<div class="flex w-full flex-wrap gap-4">
+  <app-feed *ngFor="let item of feeds" [feed]="item" ></app-feed>
 </div>
 
 

@@ -17,6 +17,10 @@ export class FeedService {
     return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}`);
   }
 
+  public getFeedForID(feedID: string) : Observable<Feed> {
+    return this.http.get<Feed>(`${environment.apiUrl}/${this.url}/${feedID}`);
+  }
+
   public getFeedForCategory(categoryID: string) : Observable<Feed[]> {
     return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/category/${categoryID}`);
   }

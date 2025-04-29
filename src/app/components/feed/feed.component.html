@@ -1,26 +1,12 @@
 <div *ngIf="feed != undefined" >
-  <div (click)="selectFeed(feed.id)" [ngClass]="{'sticky top-0' : posts.length > 0 && posts[0].feed_id == feed.id}" class="flex items-center bg-gray-200 justify-between p-2">
-    <div class="flex">
-      <img src={{feed.image}} alt={{feed.name}} class="w-20 h-20">
+  <a [routerLink]="['/feed', feed.id]" [ngClass]="{'sticky top-0' : posts.length > 0 && posts[0].feed_id == feed.id}" class="flex items-center bg-gray-100 justify-between max-w-32">
+    <div class="flex flex-col">
+      <img src={{feed.image}} alt={{feed.name}} class="">
       <div class="flex flex-col">
-        <h2 class="ml-2">{{ feed.name }}</h2>
+        <h2 class="">{{ feed.name }}</h2>
         <div class="flex flex-wrap gap-2 pl-4">
-          <div *ngFor="let category of feed.categories">
-            <span class="bg-sky-50 rounded-lg p-1 whitespace-nowrap">{{ category.title }}</span>
-          </div>
         </div>
       </div>
     </div>
-    <div>
-      <img src="../../../assets/down-arrow.png" class="w-6" *ngIf="posts.length == 0 || posts[0].feed_id != feed.id" />
-      <img src="../../../assets/up-arrow.png" class="w-6" *ngIf="posts.length > 0 && posts[0].feed_id == feed.id" />
-    </div>
-  </div>
-
-  <div *ngIf="posts.length > 0  && posts[0].feed_id == feed.id">
-    <div *ngFor="let post of posts">
-      <app-posts *ngIf="post.feed_id == feed.id"[post]="post"></app-posts>
-    </div>
-    <button (click)="loadMore(feed.id)">Load more</button>
-  </div>
+  </a>
 </div>

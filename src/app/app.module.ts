@@ -19,10 +19,12 @@ import { AddFeedComponent } from './components/add-feed/add-feed.component';
 import { ExploreCategoryComponent } from './components/explore-category/explore-category.component';
 import { RouterModule, Routes } from '@angular/router'
 import { HomeComponent } from './components/home/home.component';
+import { FeedPageComponent } from './components/feed-page/feed-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'}
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: 'feed/:id', component: FeedPageComponent},
 ]
 
 @NgModule({
@@ -34,7 +36,8 @@ const routes: Routes = [
     FeedsComponent,
     AddFeedComponent,
     ExploreCategoryComponent,
-    HomeComponent
+    HomeComponent,
+    FeedPageComponent
   ],
   imports: [
     BrowserModule,
