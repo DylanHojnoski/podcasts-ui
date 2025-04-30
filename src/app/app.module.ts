@@ -20,11 +20,16 @@ import { ExploreCategoryComponent } from './components/explore-category/explore-
 import { RouterModule, Routes } from '@angular/router'
 import { HomeComponent } from './components/home/home.component';
 import { FeedPageComponent } from './components/feed-page/feed-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { QueueComponent } from './components/queue/queue.component';
+import { ExploreComponent } from './components/explore/explore.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'feed/:id', component: FeedPageComponent},
+  { path: 'queue', component: QueueComponent},
+  { path: 'explore', component: ExploreComponent},
 ]
 
 @NgModule({
@@ -37,7 +42,10 @@ const routes: Routes = [
     AddFeedComponent,
     ExploreCategoryComponent,
     HomeComponent,
-    FeedPageComponent
+    FeedPageComponent,
+    NavbarComponent,
+    QueueComponent,
+    ExploreComponent
   ],
   imports: [
     BrowserModule,
