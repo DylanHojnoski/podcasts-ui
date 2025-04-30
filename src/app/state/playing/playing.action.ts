@@ -12,5 +12,34 @@ export const addToQueue = createAction(
 );
 
 export const removeFromQueue = createAction(
-  'Remove From Queue'
+  'Remove From Queue',
+  props<{index: number}>()
 )
+
+export const moveForwardInQueue = createAction(
+  'Move Forward In Queue',
+  props<{index: number}>()
+)
+
+export const moveBackwardInQueue = createAction(
+  'Move Backward In Queue',
+  props<{index: number}>()
+)
+
+export const clearQueue = createAction(
+  'Clear Queue',
+)
+
+export const loadQueue = createAction(
+  'Load Queue',
+)
+
+export const loadPlaying = createAction(
+  'Load Playing',
+)
+
+export const clearPlaying = createAction(
+  'Clear Playing',
+)
+
+

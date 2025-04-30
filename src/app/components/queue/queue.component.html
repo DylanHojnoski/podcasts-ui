@@ -1,1 +1,10 @@
-<p>queue works!</p>
+
+<button (click)="clear()">Clear</button>
+<div *ngFor="let post of queue; let i = index" class="flex flex-row">
+  <div class="flex flex-col items-center gap-4 justify-center">
+    <img src="../../../assets/up-arrow.png" (click)="moveForward(i)" class="w-4 cursor-pointer">
+  <button (click)="remove(i)">X</button>
+    <img src="../../../assets/down-arrow.png" (click)="moveBackward(i)" class="w-4 cursor-pointer">
+  </div>
+  <app-posts [post]="post" class="w-full"></app-posts>
+</div>

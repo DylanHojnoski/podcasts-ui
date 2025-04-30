@@ -26,7 +26,6 @@ export class FeedPageComponent {
     if (this.feedId != null) {
       this.feedService.getFeedForID(this.feedId).subscribe((feed) => {
         this.feed = feed;
-        console.log(feed);
       });
       this.store.dispatch(loadPosts({ feedId: this.feedId }));
       this.store.select(selectPosts).subscribe((posts) => {
