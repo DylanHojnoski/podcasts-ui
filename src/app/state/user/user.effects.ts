@@ -4,13 +4,17 @@ import { catchError, from, map, of, switchMap } from "rxjs";
 import { UserService } from "src/app/services/user.service";
 import { loginFailure, createAccount, createAccountFailure, createAccountSuccess, login, loginSuccess, logout, logoutSuccess, logoutFailure, getUser, getUserSuccess, getUserFailure} from "./user.action";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { AppState } from "../app.state";
+import { loadFollowedFeeds } from "../feed/feed.action";
 
 @Injectable()
 export class UserEffects {
   constructor(
     private actions: Actions,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {}
 
   createAccount = createEffect(() =>
@@ -35,6 +39,7 @@ export class UserEffects {
                              switchMap(() =>
                                        from(this.userService.getUser()).pipe(
                                          map((user) => {
+                                           this.store.dispatch(loadFollowedFeeds());
                                            return getUserSuccess({user: user});
                                          }
                                             ),

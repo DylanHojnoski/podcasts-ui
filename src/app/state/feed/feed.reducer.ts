@@ -1,16 +1,18 @@
 import { createReducer, on } from "@ngrx/store";
-import { addFeed, addFeedFailure, addFeedSuccess, loadFeedCategories, loadFeedCategoriesFailure, loadFeedCategoriesSuccess, loadFeeds, loadFeedsFailure, loadFeedsForCategory, loadFeedsForCategoryFailure, loadFeedsForCategorySuccess, loadFeedsSuccess } from "./feed.action";
+import { addFeed, addFeedFailure, addFeedFollow, addFeedFollowFailure, addFeedFollowSuccess, addFeedSuccess, loadFeedCategories, loadFeedCategoriesFailure, loadFeedCategoriesSuccess, loadFeeds, loadFeedsFailure, loadFeedsForCategory, loadFeedsForCategoryFailure, loadFeedsForCategorySuccess, loadFeedsSuccess, loadFollowedFeeds, loadFollowedFeedsFailure, loadFollowedFeedsSuccess, removeFeedFollow, removeFeedFollowFailure, removeFeedFollowSuccess } from "./feed.action";
 import { Feed } from "src/app/models/feed";
 import { Category } from "src/app/models/category";
 
 export interface FeedState {
   feeds: Feed[],
+  followedFeeds: Feed[],
   categories: Category[],
   error: string | null;
 }
 
 export const initialState: FeedState = {
   feeds: [],
+  followedFeeds: [],
   categories: [],
   error: null,
 }
@@ -27,6 +29,19 @@ export const feedReducer = createReducer(
   })),
 
   on(loadFeedsFailure, (state, { error }) => ({
+    ...state,
+    error: error,
+  })),
+
+  on(loadFollowedFeeds, (state) => ({...state})),
+
+  on(loadFollowedFeedsSuccess, (state, { feeds }) => ({
+    ...state,
+    followedFeeds: feeds,
+    error: null,
+  })),
+
+  on(loadFollowedFeedsFailure, (state, { error }) => ({
     ...state,
     error: error,
   })),
@@ -65,6 +80,32 @@ export const feedReducer = createReducer(
   })),
 
   on(addFeedFailure, (state, { error }) => ({
+    ...state,
+    error: error,
+  })),
+
+  on(addFeedFollow, (state) => ({...state})),
+
+  on(addFeedFollowSuccess, (state, { id }) => ({
+    ...state,
+    followedFeeds: state.followedFeeds.concat({id: id} as Feed),
+    error: null,
+  })),
+
+  on(addFeedFollowFailure, (state, { error }) => ({
+    ...state,
+    error: error,
+  })),
+
+  on(removeFeedFollow, (state) => ({...state})),
+
+  on(removeFeedFollowSuccess, (state, { id }) => ({
+    ...state,
+    followedFeeds: state.followedFeeds.filter(f => f.id != id),
+    error: null,
+  })),
+
+  on(removeFeedFollowFailure, (state, { error }) => ({
     ...state,
     error: error,
   })),

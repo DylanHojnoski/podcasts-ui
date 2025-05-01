@@ -28,6 +28,7 @@ import { LoginComponent } from './components/login/login.component';
 import { userReducer } from './state/user/user.reducer';
 import { UserEffects } from './state/user/user.effects';
 import { AccountComponent } from './components/account/account.component';
+import { FollowedFeedsComponent } from './components/followed-feeds/followed-feeds.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -56,7 +57,8 @@ const routes: Routes = [
     ExploreComponent,
     CreateAccountComponent,
     LoginComponent,
-    AccountComponent
+    AccountComponent,
+    FollowedFeedsComponent
   ],
   imports: [
     BrowserModule,

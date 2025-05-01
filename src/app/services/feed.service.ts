@@ -42,5 +42,16 @@ export class FeedService {
     return this.http.post(`${environment.apiUrl}/${this.url}/opml`, data);
   }
 
+  public getFollowedFeeds() : Observable<Feed[]> {
+    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/follows`, { withCredentials: true });
+  }
+
+  public followFeed(feedID: string) : Observable<Feed> {
+    return this.http.post<Feed>(`${environment.apiUrl}/${this.url}/follows`, { id: feedID }, { withCredentials: true });
+  }
+
+  public deleteFollowFeed(feedID: string) : Observable<Object> {
+    return this.http.delete(`${environment.apiUrl}/${this.url}/follows/${feedID}`, { withCredentials: true });
+  }
 
 }

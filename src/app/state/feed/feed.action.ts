@@ -14,6 +14,18 @@ export const loadFeedsFailure = createAction(
   props<{ error: string }>()
 )
 
+export const loadFollowedFeeds = createAction('Load Followed Feeds');
+
+export const loadFollowedFeedsSuccess = createAction(
+  'Followed Feeds Load Success',
+  props<{ feeds: Feed[] }>()
+);
+
+export const loadFollowedFeedsFailure = createAction(
+  'Followed Feeds Load Failure',
+  props<{ error: string }>()
+)
+
 export const loadFeedsForCategory = createAction(
   'Load Feeds For Category',
   props<{ categoryID: string}>()
@@ -55,3 +67,33 @@ export const addFeedFailure = createAction(
   'Add Feed Failure',
   props<{ error: string }>()
 )
+
+export const addFeedFollow = createAction(
+  'Add Feed Follow',
+  props<{ id: string }>()
+);
+
+export const addFeedFollowSuccess = createAction(
+  'Add Feed Success',
+  props<{ id: String }>()
+);
+
+export const addFeedFollowFailure = createAction(
+  'Add Feed Failure',
+  props<{ error: string }>()
+);
+
+export const removeFeedFollow = createAction(
+  'Remove Feed Follow',
+  props<{ id: string }>()
+);
+
+export const removeFeedFollowSuccess = createAction(
+  'Remove Feed Success',
+  props<{ id: string }>()
+);
+
+export const removeFeedFollowFailure = createAction(
+  'Remove Feed Failure',
+  props<{ error: string }>()
+);

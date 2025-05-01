@@ -4,8 +4,7 @@ import { Category } from 'src/app/models/category';
 import { Feed } from 'src/app/models/feed';
 import { FeedService } from 'src/app/services/feed.service';
 import { AppState } from 'src/app/state/app.state';
-import { loadFeeds, loadFeedsForCategory } from 'src/app/state/feed/feed.action';
-import { selectAllFeeds, selectCategoryFeeds } from 'src/app/state/feed/feed.selector';
+import { selectCategoryFeeds } from 'src/app/state/feed/feed.selector';
 
 @Component({
   selector: 'app-explore-category',

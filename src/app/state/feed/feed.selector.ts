@@ -9,6 +9,11 @@ export const selectAllFeeds = createSelector(
   (state: FeedState) => state.feeds
 );
 
+export const selectFollowedFeeds = createSelector(
+  feedState,
+  (state: FeedState) => state.followedFeeds
+);
+
 export const selectCategoryFeeds = createSelector(
   feedState,
   (state: FeedState) => state.categories
