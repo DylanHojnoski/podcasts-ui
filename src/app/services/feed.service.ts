@@ -22,7 +22,7 @@ export class FeedService {
   }
 
   public getFeedForCategory(categoryID: string) : Observable<Feed[]> {
-    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/category/${categoryID}`);
+    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/category/${categoryID}`, {withCredentials: true});
   }
 
   public getFeedCategories() : Observable<Category[]> {

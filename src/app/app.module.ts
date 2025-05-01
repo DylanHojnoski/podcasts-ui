@@ -23,6 +23,10 @@ import { FeedPageComponent } from './components/feed-page/feed-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { QueueComponent } from './components/queue/queue.component';
 import { ExploreComponent } from './components/explore/explore.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { LoginComponent } from './components/login/login.component';
+import { userReducer } from './state/user/user.reducer';
+import { UserEffects } from './state/user/user.effects';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -30,6 +34,8 @@ const routes: Routes = [
   { path: 'feed/:id', component: FeedPageComponent},
   { path: 'queue', component: QueueComponent},
   { path: 'explore', component: ExploreComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'create-account', component: CreateAccountComponent},
 ]
 
 @NgModule({
@@ -45,14 +51,16 @@ const routes: Routes = [
     FeedPageComponent,
     NavbarComponent,
     QueueComponent,
-    ExploreComponent
+    ExploreComponent,
+    CreateAccountComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({feed: feedReducer, playing: playingReducer, posts: postsReducer}),
-    EffectsModule.forRoot([FeedEffects, PostEffects]),
+    StoreModule.forRoot({feed: feedReducer, playing: playingReducer, posts: postsReducer, user: userReducer}),
+    EffectsModule.forRoot([FeedEffects, PostEffects, UserEffects]),
     RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent]
