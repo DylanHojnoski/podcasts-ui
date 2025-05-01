@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './state/app.state';
-import { loadFeedCategories } from './state/feed/feed.action';
-import { Category } from './models/category';
-import { selectCategoryFeeds } from './state/feed/feed.selector';
+import { getUser } from './state/user/user.action';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +11,9 @@ import { selectCategoryFeeds } from './state/feed/feed.selector';
 export class AppComponent {
   title = 'podcasts-ui';
 
+  public constructor(private store: Store<AppState>) { }
+
+  ngOnInit(): void {
+    this.store.dispatch(getUser());
+  }
 }

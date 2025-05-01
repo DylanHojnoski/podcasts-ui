@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
-import { login, logout } from 'src/app/state/user/user.action';
+import { login, loginSuccess } from 'src/app/state/user/user.action';
 
 @Component({
   selector: 'app-login',
@@ -15,15 +16,7 @@ export class LoginComponent {
 
   public constructor(private store: Store<AppState>) { }
 
-  ngOnInit(): void {
-  }
-
   login() {
     this.store.dispatch(login({username: this.username, password: this.password}));
   }
-
-  logout() {
-    this.store.dispatch(logout());
-  }
-
 }

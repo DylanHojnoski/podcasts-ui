@@ -1,0 +1,9 @@
+<div *ngIf="user != undefined" class="flex flex-col gap-4 justify-center items-center">
+  <div>{{ user.name }}</div>
+  <button (click)="logout()" class="w-32">Logout</button>
+  <button (click)="getOPML()" class="w-32">Export OPML</button>
+  <label class="cursor-pointer" class="w-32 text-center">
+    Import OPML
+    <input type="file" accept=".opml" (change)="importOPML($event)" class="hidden" >
+  </label>
+</div>

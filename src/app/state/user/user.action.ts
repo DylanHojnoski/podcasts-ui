@@ -16,7 +16,17 @@ export const createAccountFailure = createAction(
   props<{ error: string }>()
 )
 
+export const getUser = createAction('Get User');
 
+export const getUserSuccess = createAction(
+  'Get User Success',
+  props<{ user: User }>()
+);
+
+export const getUserFailure = createAction(
+  'Get User Failure',
+  props<{ error: string }>()
+)
 export const login = createAction(
   'Login',
   props<{ username: string, password: string }>()

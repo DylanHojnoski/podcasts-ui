@@ -2,7 +2,8 @@
   <a [routerLink]="['/home']">Home</a>
   <a [routerLink]="['/explore']">Explore</a>
   <a [routerLink]="['/queue']">Queue</a>
-  <a [routerLink]="['/create-account']">Create Account</a>
-  <a [routerLink]="['/login']">Login</a>
+  <a [routerLink]="['/account/create-account']" *ngIf="user == undefined">Create Account</a>
+  <a [routerLink]="['/login']" *ngIf="user == undefined">Login</a>
+  <a [routerLink]="['/account']" *ngIf="user != undefined">Account</a>
   <app-add-feed></app-add-feed>
 </div>

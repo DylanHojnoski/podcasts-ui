@@ -17,6 +17,10 @@ export class UserService {
     return this.http.post<User>(`${environment.apiUrl}/${this.url}`, {username: username, password: password}, { withCredentials: true });
   }
 
+  public getUser() : Observable<User> {
+    return this.http.get<User>(`${environment.apiUrl}/${this.url}`, { withCredentials: true });
+  }
+
   public login(username: string, password: string) : Observable<User> {
     return this.http.post<User>(`${environment.apiUrl}/${this.url}/login`, {username: username, password: password}, { withCredentials: true });
   }

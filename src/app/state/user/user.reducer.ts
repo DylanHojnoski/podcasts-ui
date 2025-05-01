@@ -1,14 +1,14 @@
 import { createReducer, on } from "@ngrx/store";
 import { User } from "src/app/models/user";
-import { loginFailure, createAccount, createAccountFailure, createAccountSuccess, login, loginSuccess, logout, logoutSuccess } from "./user.action";
+import { loginFailure, createAccount, createAccountFailure, createAccountSuccess, login, loginSuccess, logout, logoutSuccess, getUser, getUserSuccess, getUserFailure } from "./user.action";
 
 export interface UserState {
-  user: User | null,
+  user: User | undefined,
   error: string | null;
 }
 
 export const initialState: UserState = {
-  user: null,
+  user: undefined,
   error: null,
 }
 
@@ -24,6 +24,19 @@ export const userReducer = createReducer(
   })),
 
   on(createAccountFailure, (state, { error }) => ({
+    ...state,
+    error: error,
+  })),
+
+  on(getUser, (state) => ({...state})),
+
+    on(getUserSuccess, (state, { user }) => ({
+    ...state,
+    user: user,
+    error: null,
+  })),
+
+  on(getUserFailure, (state, { error }) => ({
     ...state,
     error: error,
   })),
@@ -45,7 +58,7 @@ export const userReducer = createReducer(
 
     on(logoutSuccess, (state) => ({
     ...state,
-    user: null,
+    user: undefined,
     error: null,
   })),
 

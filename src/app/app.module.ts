@@ -27,6 +27,7 @@ import { CreateAccountComponent } from './components/create-account/create-accou
 import { LoginComponent } from './components/login/login.component';
 import { userReducer } from './state/user/user.reducer';
 import { UserEffects } from './state/user/user.effects';
+import { AccountComponent } from './components/account/account.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'queue', component: QueueComponent},
   { path: 'explore', component: ExploreComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'create-account', component: CreateAccountComponent},
+  { path: 'account/create-account', component: CreateAccountComponent},
+  { path: 'account', component: AccountComponent},
 ]
 
 @NgModule({
@@ -53,7 +55,8 @@ const routes: Routes = [
     QueueComponent,
     ExploreComponent,
     CreateAccountComponent,
-    LoginComponent
+    LoginComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
