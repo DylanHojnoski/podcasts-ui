@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Post } from "src/app/models/post";
-import { loadPosts, loadPostsAfterDate, loadPostsAfterDateFailure, loadPostsAfterDateSuccess, loadPostsFailure, loadPostsSuccess } from "./posts.action";
+import { loadPosts, loadPostsDate, loadPostsDateFailure, loadPostsDateSuccess, loadPostsFailure, loadPostsSuccess } from "./posts.action";
 
 export interface PostsState {
   posts: Post[],
@@ -28,15 +28,15 @@ export const postsReducer = createReducer(
     error: error,
   })),
 
-  on(loadPostsAfterDate, (state) => ({...state})),
+  on(loadPostsDate, (state) => ({...state})),
 
-  on(loadPostsAfterDateSuccess, (state, { posts }) => ({
+  on(loadPostsDateSuccess, (state, { posts }) => ({
     ...state,
     posts: state.posts.concat(posts),
     error: null,
   })),
 
-  on(loadPostsAfterDateFailure, (state, { error }) => ({
+  on(loadPostsDateFailure, (state, { error }) => ({
     ...state,
     error: error,
   })),

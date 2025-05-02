@@ -1,9 +1,9 @@
 import { createAction, props } from "@ngrx/store";
-import { Post } from "src/app/models/post";
+import { Order, Post } from "src/app/models/post";
 
 export const loadPosts = createAction(
   'Load Posts',
-  props<{ feedId: string }>()
+  props<{ feedId: string, order: Order }>()
 );
 
 export const loadPostsSuccess = createAction(
@@ -16,17 +16,17 @@ export const loadPostsFailure = createAction(
   props<{ error: string }>()
 )
 
-export const loadPostsAfterDate = createAction(
-  'Load Posts After Date',
-  props<{ feedId: string, date: string }>()
+export const loadPostsDate = createAction(
+  'Load Posts Date',
+  props<{ feedId: string, date: string, order: Order}>()
 );
 
-export const loadPostsAfterDateSuccess = createAction(
-  'Posts Load After Date Success',
+export const loadPostsDateSuccess = createAction(
+  'Posts Load Date Success',
   props<{ posts: Post[] }>()
 );
 
-export const loadPostsAfterDateFailure = createAction(
-  'Posts Load After Date Failure',
+export const loadPostsDateFailure = createAction(
+  'Posts Load Date Failure',
   props<{ error: string }>()
 )

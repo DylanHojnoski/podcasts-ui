@@ -1,10 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Post } from 'src/app/models/post';
-import { Store } from '@ngrx/store';
 import { Feed } from 'src/app/models/feed';
-import { AppState } from 'src/app/state/app.state';
-import { selectPosts } from 'src/app/state/posts/posts.selector';
-import { loadPosts, loadPostsAfterDate } from 'src/app/state/posts/posts.action';
 
 @Component({
   selector: 'app-feed',
@@ -12,35 +7,8 @@ import { loadPosts, loadPostsAfterDate } from 'src/app/state/posts/posts.action'
   styleUrls: ['./feed.component.css']
 })
 
-export class FeedComponent implements OnInit {
+export class FeedComponent {
   @Input() feed: Feed | undefined = undefined;
-  posts: Post[] = [];
-
-  public constructor(private store: Store<AppState>) { }
-
-  ngOnInit(): void {
-    this.store.select(selectPosts).subscribe((posts) => {
-      this.posts = posts;
-    });
-  }
-
-  selectFeed(id: string) {
-    if (this.posts.length > 0 && this.posts[0].feed_id == id) {
-      this.posts = [];
-    }
-    else {
-      this.store.dispatch(loadPosts({ feedId: id }));
-    }
-  }
-
-  loadMore(id: string) {
-    if (this.posts.length > 0) {
-      const date = this.posts[this.posts.length-1].published_at;
-      if (date != undefined) {
-        this.store.dispatch(loadPostsAfterDate({ feedId: id, date: date}))
-      }
-    }
-  }
 
 }
 

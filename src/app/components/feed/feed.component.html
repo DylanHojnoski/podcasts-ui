@@ -1,5 +1,5 @@
 <div *ngIf="feed != undefined" >
-  <a [routerLink]="['/feed', feed.id]" [ngClass]="{'sticky top-0' : posts.length > 0 && posts[0].feed_id == feed.id}" class="flex items-center bg-gray-100 justify-between max-w-32">
+  <a [routerLink]="['/feed', feed.id]" class="flex items-center bg-gray-100 justify-between max-w-32">
     <div class="flex flex-col">
       <img src={{feed.image}} alt={{feed.name}} class="">
       <div class="flex flex-col">

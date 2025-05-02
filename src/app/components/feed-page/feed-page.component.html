@@ -1,7 +1,7 @@
 <div *ngIf="feed != undefined">
-  <div class="flex items-center gap-4">
+  <div class="flex items-center gap-4 w-full">
     <img src={{feed.image}} alt={{feed.name}} class="w-52">
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2 w-full">
       <div class="flex w-full justify-between">
         <div class="flex gap-4 items-center">
           <h1 class="text-3xl">{{ feed.name }}</h1>
@@ -18,6 +18,10 @@
       <p>{{ feed.description }}</p>
     </div>
   </div>
+  <select [(ngModel)]="order" (change)="loadPosts()">
+    <option value="{{OrderEnum.desc}}" selected="selected">Newest</option>
+    <option value="{{OrderEnum.asc}}">Oldest</option>
+  </select>
   <div *ngIf="posts.length > 0  && posts[0].feed_id == feed.id">
     <div *ngFor="let post of posts">
       <app-posts *ngIf="post.feed_id == feed.id"[post]="post"></app-posts>

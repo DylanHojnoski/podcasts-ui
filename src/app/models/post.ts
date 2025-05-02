@@ -9,3 +9,8 @@ export class Post {
   duration?: string;
   feed_id?: string;
 }
+
+export enum Order {
+  desc = "desc",
+  asc = "asc"
+}
