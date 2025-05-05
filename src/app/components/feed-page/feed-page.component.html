@@ -15,10 +15,10 @@
       <div class="flex gap-4">
         <p *ngFor="let category of feed.categories" class="bg-sky-50 p-1 rounded-lg">{{ category.title }}</p>
       </div>
-      <p>{{ feed.description }}</p>
+      <p [innerHTML]="feed.description"></p>
     </div>
   </div>
-  <select [(ngModel)]="order" (change)="loadPosts()">
+  <select [(ngModel)]="order" (change)="loadPosts()" class="p-1 rounded-lg">
     <option value="{{OrderEnum.desc}}" selected="selected">Newest</option>
     <option value="{{OrderEnum.asc}}">Oldest</option>
   </select>

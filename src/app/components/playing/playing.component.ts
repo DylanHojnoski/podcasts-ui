@@ -4,6 +4,7 @@ import { Post } from 'src/app/models/post';
 import { AppState } from 'src/app/state/app.state';
 import { clearPlaying, loadPlaying, loadQueue, setPlaying } from 'src/app/state/playing/playing.action';
 import { selectPlaying, selectQueue } from 'src/app/state/playing/playing.selector';
+import { addPostView } from 'src/app/state/posts/posts.action';
 
 @Component({
   selector: 'app-playing',
@@ -14,6 +15,8 @@ import { selectPlaying, selectQueue } from 'src/app/state/playing/playing.select
 export class PlayingComponent implements OnInit {
   playing: Post | undefined = undefined;
   queue: Post[] = [];
+  viewed: boolean = false;
+  lastUpdate: number = 0;
 
   public constructor(private store: Store<AppState>) { }
 
@@ -38,7 +41,17 @@ export class PlayingComponent implements OnInit {
     }
 
     audio?.addEventListener("timeupdate", () => {
-      localStorage.setItem("playingTime", audio.currentTime.toString());
+      const now = Date.now();
+
+      if (now - this.lastUpdate >= 30000) {
+        localStorage.setItem("playingTime", audio.currentTime.toString());
+        this.lastUpdate = now;
+      }
+
+      if (this.playing?.id != undefined && !this.viewed && audio.currentTime / audio.duration >= 0.8) {
+        this.store.dispatch(addPostView({ id: this.playing?.id }));
+        this.viewed = true;
+      }
     })
 
     audio?.addEventListener("ended", () => {
@@ -51,6 +64,9 @@ export class PlayingComponent implements OnInit {
   }
 
   next() {
-    this.store.dispatch(setPlaying({ playing: this.queue[0]}));
+    if (this.queue.length > 0) {
+      this.store.dispatch(setPlaying({ playing: this.queue[0]}));
+      this.viewed = false;
+    }
   }
 }

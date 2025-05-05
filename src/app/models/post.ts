@@ -7,6 +7,7 @@ export class Post {
   url?: string;
   audio?: string;
   duration?: string;
+  viewed?: boolean;
   feed_id?: string;
 }
 

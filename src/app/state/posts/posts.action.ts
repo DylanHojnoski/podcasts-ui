@@ -30,3 +30,19 @@ export const loadPostsDateFailure = createAction(
   'Posts Load Date Failure',
   props<{ error: string }>()
 )
+
+export const addPostView = createAction(
+  'Add Post View',
+  props<{ id: string }>()
+);
+
+export const addPostViewSuccess = createAction(
+  'Add Post View Success',
+  props<{ id: String }>()
+);
+
+export const addPostViewFailure = createAction(
+  'Add Post View Failure',
+  props<{ error: string }>()
+);
+

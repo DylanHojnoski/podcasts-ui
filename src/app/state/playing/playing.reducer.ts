@@ -31,7 +31,7 @@ export const playingReducer = createReducer(
 
   on(loadPlaying, (state) => {
     const data = localStorage.getItem("playing");
-    if (data != null) {
+    if (data != null ||  data != undefined) {
       const queue =  JSON.parse(data) as Post
       return ({
         ...state,
@@ -88,7 +88,7 @@ export const playingReducer = createReducer(
 
   on(loadQueue, (state) => {
     const data = localStorage.getItem("queue");
-    if (data != null) {
+    if (data != null && data != undefined) {
       const queue =  JSON.parse(data) as Post[]
       return ({
         ...state,

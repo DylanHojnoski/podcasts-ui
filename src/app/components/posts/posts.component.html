@@ -20,6 +20,7 @@
 
       <div class="flex gap-4">
         <button (click)="play(post)">Play</button>
+        <p *ngIf="post.viewed">Viewed</p>
         <p>{{post.duration}}</p>
         <button (click)="addToQueue(post)">Add to queue</button>
       </div>

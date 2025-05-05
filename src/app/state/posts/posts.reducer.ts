@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Post } from "src/app/models/post";
-import { loadPosts, loadPostsDate, loadPostsDateFailure, loadPostsDateSuccess, loadPostsFailure, loadPostsSuccess } from "./posts.action";
+import { addPostView, addPostViewFailure, addPostViewSuccess, loadPosts, loadPostsDate, loadPostsDateFailure, loadPostsDateSuccess, loadPostsFailure, loadPostsSuccess } from "./posts.action";
 
 export interface PostsState {
   posts: Post[],
@@ -37,6 +37,19 @@ export const postsReducer = createReducer(
   })),
 
   on(loadPostsDateFailure, (state, { error }) => ({
+    ...state,
+    error: error,
+  })),
+
+  on(addPostView, (state) => ({...state})),
+
+  on(addPostViewSuccess, (state, { id }) => ({
+    ...state,
+    posts: state.posts.map(p => p.id == id ? {...p, viewed: true} : p),
+    error: null,
+  })),
+
+  on(addPostViewFailure, (state, { error }) => ({
     ...state,
     error: error,
   })),
