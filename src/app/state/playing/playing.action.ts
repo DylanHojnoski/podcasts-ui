@@ -26,6 +26,11 @@ export const moveBackwardInQueue = createAction(
   props<{index: number}>()
 )
 
+export const moveToIndexInQueue = createAction(
+  'Move Backward In Queue',
+  props<{start: number , end: number}>()
+)
+
 export const clearQueue = createAction(
   'Clear Queue',
 )

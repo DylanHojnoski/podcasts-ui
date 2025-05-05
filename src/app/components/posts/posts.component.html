@@ -1,28 +1,26 @@
-<div>
-    <div class="m-2 p-2 border-black border-b-2 ">
+<div class="m-2 p-2 border-black border-b-2 ">
 
-      <div class="flex items-center">
-        <h3 class="text-lg">{{ post.title }}</h3>
-        <span class="ml-4">{{ post.published_at | date: 'shortDate'}}</span>
+  <div class="flex items-center">
+    <h3 class="text-lg">{{ post.title }}</h3>
+    <span class="ml-4">{{ post.published_at | date: 'shortDate'}}</span>
+  </div>
+
+  <div class="p-2">
+    <button (click)="toggleDescription()" class="flex">
+      Description
+      <div class="ml-2 self-center">
+        <img src="../../../assets/down-arrow.png" class="w-2" *ngIf="!descriptionActive" />
+        <img src="../../../assets/up-arrow.png" class="w-2" *ngIf="descriptionActive" />
       </div>
-
-      <div class="p-2">
-        <button (click)="toggleDescription()" class="flex">
-          Description
-          <div class="ml-2 self-center">
-          <img src="../../../assets/down-arrow.png" class="w-2" *ngIf="!descriptionActive" />
-          <img src="../../../assets/up-arrow.png" class="w-2" *ngIf="descriptionActive" />
-          </div>
-        </button>
-        <p *ngIf="descriptionActive" [innerHTML]="post.description"></p>
-      </div>
+    </button>
+    <p *ngIf="descriptionActive" [innerHTML]="post.description"></p>
+  </div>
 
 
-      <div class="flex gap-4">
-        <button (click)="play(post)">Play</button>
-        <p *ngIf="post.viewed">Viewed</p>
-        <p>{{post.duration}}</p>
-        <button (click)="addToQueue(post)">Add to queue</button>
-      </div>
-    </div>
+  <div class="flex gap-4">
+    <button (click)="play(post)">Play</button>
+    <p *ngIf="post.viewed">Viewed</p>
+    <p>{{post.duration}}</p>
+    <button (click)="addToQueue(post)">Add to queue</button>
+  </div>
 </div>

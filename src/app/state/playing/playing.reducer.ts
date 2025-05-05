@@ -1,6 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { Post } from "src/app/models/post";
-import { addToQueue, clearPlaying, clearQueue, loadPlaying, loadQueue, moveBackwardInQueue, moveForwardInQueue, removeFromQueue, setPlaying } from "./playing.action";
+import { addToQueue, clearPlaying, clearQueue, loadPlaying, loadQueue, moveBackwardInQueue, moveForwardInQueue, moveToIndexInQueue, removeFromQueue, setPlaying } from "./playing.action";
+import { queue } from "rxjs";
 
 export interface PlayingState {
   playing: Post | undefined;
@@ -98,6 +99,32 @@ export const playingReducer = createReducer(
     return ({
       ...state,
     })
+  }),
+
+  on(moveToIndexInQueue, (state, { start, end }) => {
+    let newQueue = state.queue.slice();
+
+    if (start < end) {
+      for (let i = start; i < end; i++ ) {
+        let temp = newQueue[i];
+        newQueue[i] = newQueue[i+1];
+        newQueue[i+1] = temp
+      }
+    }
+    else {
+      for (let i = start; i > end; i-- ) {
+        let temp = newQueue[i];
+        newQueue[i] = newQueue[i-1];
+        newQueue[i-1] = temp
+      }
+    }
+
+    localStorage.setItem("queue", JSON.stringify(newQueue))
+
+    return ({
+    ...state,
+    queue: newQueue
+    });
   }),
 
   on(moveForwardInQueue, (state, { index }) => {

@@ -56,11 +56,15 @@ export const userReducer = createReducer(
 
   on(logout, (state) => ({...state})),
 
-    on(logoutSuccess, (state) => ({
-    ...state,
-    user: undefined,
-    error: null,
-  })),
+    on(logoutSuccess, (state) => {
+    localStorage.clear();
+
+    return ({
+      ...state,
+      user: undefined,
+      error: null,
+    });
+  }),
 
   on(loginFailure, (state, { error }) => ({
     ...state,

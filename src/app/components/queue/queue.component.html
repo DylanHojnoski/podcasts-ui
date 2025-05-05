@@ -1,10 +1,12 @@
 
 <button (click)="clear()">Clear</button>
-<div *ngFor="let post of queue; let i = index" class="flex flex-row">
-  <div class="flex flex-col items-center gap-4 justify-center">
-    <img src="../../../assets/up-arrow.png" (click)="moveForward(i)" class="w-4 cursor-pointer">
-  <button (click)="remove(i)">X</button>
-    <img src="../../../assets/down-arrow.png" (click)="moveBackward(i)" class="w-4 cursor-pointer">
+<div #container class="p-1 -m-1">
+  <div *ngFor="let post of queue; let i = index" class="flex flex-row queue-item" id="{{i}}" draggable="true" #queueItem>
+    <div class="flex flex-col items-center gap-4 justify-center">
+      <div class="cursor-move" >=</div>
+      <button (click)="remove(i)">X</button>
+    </div>
+    <app-posts [post]="post" class="w-full"></app-posts>
   </div>
-  <app-posts [post]="post" class="w-full"></app-posts>
+  <div class="border-sky-600 hidden" ></div>
 </div>
