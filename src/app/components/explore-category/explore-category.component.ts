@@ -21,7 +21,7 @@ export class ExploreCategoryComponent {
   title: string = "";
 
   ngOnInit(): void {
-    this.feedService.getFeedForCategory(this.category).subscribe((feeds) => {
+    this.feedService.getFeedForCategory(this.category, 9).subscribe((feeds) => {
       this.feeds = feeds;
     })
 
@@ -29,10 +29,6 @@ export class ExploreCategoryComponent {
       this.categories = categories;
       this.title = this.categoryMapping();
     });
-    //this.store.dispatch(loadFeedsForCategory({ categoryID: this.category }));
-    //
-    //this.store.select(selectCategoryFeeds).subscribe((feeds) => {
-    //})
   }
 
   categoryMapping(): string {

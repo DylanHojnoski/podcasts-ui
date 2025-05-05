@@ -21,8 +21,11 @@ export class FeedService {
     return this.http.get<Feed>(`${environment.apiUrl}/${this.url}/${feedID}`);
   }
 
-  public getFeedForCategory(categoryID: string) : Observable<Feed[]> {
-    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/category/${categoryID}`, {withCredentials: true});
+  public getFeedForCategory(categoryID: string, limit: number) : Observable<Feed[]> {
+    let params = new HttpParams();
+    params = params.set("limit", limit);
+
+    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/category/${categoryID}`, { params: params, withCredentials: true});
   }
 
   public getFeedCategories() : Observable<Category[]> {

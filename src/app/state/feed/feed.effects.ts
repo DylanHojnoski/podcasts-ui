@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { FeedService } from "src/app/services/feed.service";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { addFeed, addFeedFailure, addFeedFollow, addFeedFollowFailure, addFeedFollowSuccess, addFeedSuccess, loadFeedCategories, loadFeedCategoriesFailure, loadFeedCategoriesSuccess, loadFeeds, loadFeedsFailure, loadFeedsForCategory, loadFeedsForCategoryFailure, loadFeedsForCategorySuccess, loadFeedsSuccess, loadFollowedFeeds, loadFollowedFeedsFailure, loadFollowedFeedsSuccess, removeFeedFollow, removeFeedFollowFailure, removeFeedFollowSuccess } from "./feed.action";
-import { catchError, from, map, of, switchMap, window } from "rxjs";
+import { catchError, from, map, of, switchMap } from "rxjs";
 
 @Injectable()
 export class FeedEffects {
@@ -45,7 +45,7 @@ export class FeedEffects {
                            this.actions.pipe(
                              ofType(loadFeedsForCategory),
                              switchMap((props) =>
-                                       from(this.feedService.getFeedForCategory(props.categoryID)).pipe(
+                                       from(this.feedService.getFeedForCategory(props.categoryID, props.limit)).pipe(
                                          map((feeds) => {
                                            return loadFeedsForCategorySuccess({feeds: feeds});
                                          }

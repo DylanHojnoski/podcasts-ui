@@ -3,12 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Feed } from 'src/app/models/feed';
 import { Order, Post } from 'src/app/models/post';
+import { User } from 'src/app/models/user';
 import { FeedService } from 'src/app/services/feed.service';
 import { AppState } from 'src/app/state/app.state';
 import { addFeedFollow, removeFeedFollow } from 'src/app/state/feed/feed.action';
 import { selectFollowedFeeds } from 'src/app/state/feed/feed.selector';
 import { loadPosts, loadPostsDate } from 'src/app/state/posts/posts.action';
 import { selectPosts } from 'src/app/state/posts/posts.selector';
+import { selectUser } from 'src/app/state/user/user.selector';
 
 @Component({
   selector: 'app-feed-page',
@@ -23,6 +25,7 @@ export class FeedPageComponent {
   followed: boolean = false;
   order: Order = Order.desc;
   OrderEnum = Order;
+  user: User | undefined = undefined;
 
   public constructor(private store: Store<AppState>, private route: ActivatedRoute, private feedService: FeedService) { }
 
@@ -44,6 +47,8 @@ export class FeedPageComponent {
           this.followed = false;
         }
       });
+
+      this.store.select(selectUser).subscribe(user => this.user = user);
     }
   }
 

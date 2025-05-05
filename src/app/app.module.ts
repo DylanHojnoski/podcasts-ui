@@ -29,6 +29,7 @@ import { userReducer } from './state/user/user.reducer';
 import { UserEffects } from './state/user/user.effects';
 import { AccountComponent } from './components/account/account.component';
 import { FollowedFeedsComponent } from './components/followed-feeds/followed-feeds.component';
+import { CategoryPageComponent } from './components/category-page/category-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'account/create-account', component: CreateAccountComponent},
   { path: 'account', component: AccountComponent},
+  { path: 'category/:id', component: CategoryPageComponent},
 ]
 
 @NgModule({
@@ -58,7 +60,8 @@ const routes: Routes = [
     CreateAccountComponent,
     LoginComponent,
     AccountComponent,
-    FollowedFeedsComponent
+    FollowedFeedsComponent,
+    CategoryPageComponent
   ],
   imports: [
     BrowserModule,

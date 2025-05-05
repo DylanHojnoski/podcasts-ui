@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Feed } from 'src/app/models/feed';
-import { FeedService } from 'src/app/services/feed.service';
 import { AppState } from 'src/app/state/app.state';
 import { loadFollowedFeeds } from 'src/app/state/feed/feed.action';
 import { selectFollowedFeeds } from 'src/app/state/feed/feed.selector';

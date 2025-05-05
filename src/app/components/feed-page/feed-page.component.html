@@ -1,11 +1,17 @@
 <div *ngIf="feed != undefined">
   <div class="flex items-center gap-4 w-full">
-    <img src={{feed.image}} alt={{feed.name}} class="w-52">
+    <div class="flex flex-col gap-4">
+      <img src={{feed.image}} alt={{feed.name}} class="w-52">
+      <select [(ngModel)]="order" (change)="loadPosts()" class="p-1 rounded-lg">
+        <option value="{{OrderEnum.desc}}" selected="selected">Newest</option>
+        <option value="{{OrderEnum.asc}}">Oldest</option>
+      </select>
+    </div>
     <div class="flex flex-col gap-2 w-full">
       <div class="flex w-full justify-between">
         <div class="flex gap-4 items-center">
           <h1 class="text-3xl">{{ feed.name }}</h1>
-          <div>
+          <div *ngIf="user != undefined">
             <button *ngIf="!followed" (click)="follow()">Follow</button>
             <button *ngIf="followed" (click)="unfollow()">Unfollow</button>
           </div>
@@ -13,15 +19,11 @@
         <a [href]="feed.url" target="_blank">RSS</a>
       </div>
       <div class="flex gap-4">
-        <p *ngFor="let category of feed.categories" class="bg-sky-50 p-1 rounded-lg">{{ category.title }}</p>
+        <a *ngFor="let category of feed.categories" [routerLink]="['/category', category.id]" class="bg-sky-50 p-1 rounded-lg">{{ category.title }}</a>
       </div>
       <p [innerHTML]="feed.description"></p>
     </div>
   </div>
-  <select [(ngModel)]="order" (change)="loadPosts()" class="p-1 rounded-lg">
-    <option value="{{OrderEnum.desc}}" selected="selected">Newest</option>
-    <option value="{{OrderEnum.asc}}">Oldest</option>
-  </select>
   <div *ngIf="posts.length > 0  && posts[0].feed_id == feed.id">
     <div *ngFor="let post of posts">
       <app-posts *ngIf="post.feed_id == feed.id"[post]="post"></app-posts>

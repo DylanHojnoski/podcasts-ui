@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-4">
-  <app-followed-feeds></app-followed-feeds>
+  <app-followed-feeds *ngIf="user != undefined"></app-followed-feeds>
 <div *ngFor="let category of categories" >
   <app-explore-category [category]="category.id"></app-explore-category>
 </div>
