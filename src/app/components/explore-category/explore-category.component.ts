@@ -21,7 +21,7 @@ export class ExploreCategoryComponent {
   title: string = "";
 
   ngOnInit(): void {
-    this.feedService.getFeedForCategory(this.category, 9).subscribe((feeds) => {
+    this.feedService.getFeedForCategory(this.category, 10).subscribe((feeds) => {
       this.feeds = feeds;
     })
 

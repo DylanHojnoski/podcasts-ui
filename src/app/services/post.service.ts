@@ -12,6 +12,12 @@ export class PostService {
   private url = "posts"
   constructor(private http: HttpClient) {}
 
+  public getNewPostsForUser(limit: number) : Observable<Post[]> {
+    let params = new HttpParams();
+    params = params.set("limit", limit);
+    return this.http.get<Post[]>(`${environment.apiUrl}/${this.url}`, { params: params, withCredentials: true })
+  }
+
   public getFeedPosts(id: string, order: Order) : Observable<Post[]> {
     let params = new HttpParams();
     params = params.set("order", order);

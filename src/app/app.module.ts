@@ -30,6 +30,7 @@ import { UserEffects } from './state/user/user.effects';
 import { AccountComponent } from './components/account/account.component';
 import { FollowedFeedsComponent } from './components/followed-feeds/followed-feeds.component';
 import { CategoryPageComponent } from './components/category-page/category-page.component';
+import { NewPostsComponent } from './components/new-posts/new-posts.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -61,7 +62,8 @@ const routes: Routes = [
     LoginComponent,
     AccountComponent,
     FollowedFeedsComponent,
-    CategoryPageComponent
+    CategoryPageComponent,
+    NewPostsComponent
   ],
   imports: [
     BrowserModule,

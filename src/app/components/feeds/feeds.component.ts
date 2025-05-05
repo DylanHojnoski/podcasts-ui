@@ -8,5 +8,4 @@ import { Feed } from 'src/app/models/feed';
 })
 export class FeedsComponent {
   @Input() feeds: Feed[] = [];
-
 }
