@@ -25,6 +25,7 @@ export class FeedPageComponent {
   followed: boolean = false;
   order: Order = Order.desc;
   OrderEnum = Order;
+  unviewed: boolean = false;
   user: User | undefined = undefined;
 
   public constructor(private store: Store<AppState>, private route: ActivatedRoute, private feedService: FeedService) { }
@@ -54,7 +55,7 @@ export class FeedPageComponent {
 
   loadPosts() {
     if (this.feedId != null) {
-      this.store.dispatch(loadPosts({ feedId: this.feedId, order: this.order}));
+      this.store.dispatch(loadPosts({ feedId: this.feedId, order: this.order, unviewed: this.unviewed}));
     }
   }
 
@@ -62,7 +63,7 @@ export class FeedPageComponent {
     if (this.posts.length > 0) {
       const date = this.posts[this.posts.length-1].published_at;
       if (date != undefined) {
-        this.store.dispatch(loadPostsDate({ feedId: id, date: date, order: this.order}))
+        this.store.dispatch(loadPostsDate({ feedId: id, date: date, order: this.order, unviewed: this.unviewed}))
       }
     }
   }

@@ -9,6 +9,7 @@ export class Post {
   duration?: string;
   viewed?: boolean;
   feed_id?: string;
+  feed_name?: string;
 }
 
 export enum Order {

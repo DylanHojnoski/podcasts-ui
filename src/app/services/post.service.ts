@@ -18,15 +18,17 @@ export class PostService {
     return this.http.get<Post[]>(`${environment.apiUrl}/${this.url}`, { params: params, withCredentials: true })
   }
 
-  public getFeedPosts(id: string, order: Order) : Observable<Post[]> {
+  public getFeedPosts(id: string, order: Order, unviewed: boolean) : Observable<Post[]> {
     let params = new HttpParams();
     params = params.set("order", order);
+    params = params.set("unviewed", unviewed);
     return this.http.get<Post[]>(`${environment.apiUrl}/${this.url}/${id}`, { params: params, withCredentials: true })
   }
 
-  public getFeedPostsDate(id: string, date: string, order: Order) : Observable<Post[]> {
+  public getFeedPostsDate(id: string, date: string, order: Order, unviewed: boolean) : Observable<Post[]> {
     let params = new HttpParams();
     params = params.set("order", order);
+    params = params.set("unviewed", unviewed);
     return this.http.get<Post[]>(`${environment.apiUrl}/${this.url}/${id}/${date}`, { params: params, withCredentials: true })
    }
 
