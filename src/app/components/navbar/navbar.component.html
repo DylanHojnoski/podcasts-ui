@@ -1,9 +1,9 @@
-<div class="flex gap-4 justify-center p-2 bg-gray-200">
-  <a [routerLink]="['/home']">Home</a>
+<div class="flex gap-4 justify-center items-center  p-2 bg-gray-200">
+  <app-search></app-search>
   <a [routerLink]="['/explore']">Explore</a>
+  <a [routerLink]="['/home']" *ngIf="user != undefined">Library</a>
   <a [routerLink]="['/queue']">Queue</a>
-  <a [routerLink]="['/account/create-account']" *ngIf="user == undefined">Create Account</a>
   <a [routerLink]="['/login']" *ngIf="user == undefined">Login</a>
   <a [routerLink]="['/account']" *ngIf="user != undefined">Account</a>
-  <app-add-feed></app-add-feed>
+  <!--<app-add-feed></app-add-feed>-->
 </div>

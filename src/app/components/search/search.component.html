@@ -1,0 +1,7 @@
+<div class="flex gap-4">
+  <div class="bg-white p-1 flex gap-4 rounded-lg">
+    <input type="text" name="" [(ngModel)]="name" placeholder="Search" (keydown.enter)="search()">
+    <div [class.invisible]="name == ''" (click)="clear()">X</div>
+  </div>
+  <a [routerLink]="['/feed/search', name]" (click)="clear()" class="flex items-center justify-between max-w-32">Search</a>
+</div>

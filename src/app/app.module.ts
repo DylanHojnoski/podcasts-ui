@@ -31,10 +31,12 @@ import { AccountComponent } from './components/account/account.component';
 import { FollowedFeedsComponent } from './components/followed-feeds/followed-feeds.component';
 import { CategoryPageComponent } from './components/category-page/category-page.component';
 import { NewPostsComponent } from './components/new-posts/new-posts.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: '', redirectTo: '/explore', pathMatch: 'full'},
   { path: 'feed/:id', component: FeedPageComponent},
   { path: 'queue', component: QueueComponent},
   { path: 'explore', component: ExploreComponent},
@@ -42,6 +44,7 @@ const routes: Routes = [
   { path: 'account/create-account', component: CreateAccountComponent},
   { path: 'account', component: AccountComponent},
   { path: 'category/:id', component: CategoryPageComponent},
+  { path: 'feed/search/:name', component: SearchPageComponent},
 ]
 
 @NgModule({
@@ -63,7 +66,9 @@ const routes: Routes = [
     AccountComponent,
     FollowedFeedsComponent,
     CategoryPageComponent,
-    NewPostsComponent
+    NewPostsComponent,
+    SearchComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,

@@ -12,11 +12,12 @@ export class CreateAccountComponent {
 
   username: string = "";
   password: string = "";
+  repeatPassword: string = "";
 
   public constructor(private store: Store<AppState>) { }
 
   createAccount() {
-    if (this.username.length > 0 && this.password.length > 0) {
+    if (this.username.length > 0 && this.password.length > 0 && this.password == this.repeatPassword) {
       this.store.dispatch(createAccount({username: this.username, password: this.password}));
     }
   }

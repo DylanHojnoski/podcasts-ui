@@ -32,6 +32,10 @@ export class FeedService {
     return this.http.get<Category[]>(`${environment.apiUrl}/${this.url}/category`);
   }
 
+  public getSearchFeeds(name: string) : Observable<Feed[]> {
+    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/search/${name}`);
+  }
+
   public addFeed(url: string) : Observable<Feed> {
     return this.http.post<Feed>(`${environment.apiUrl}/${this.url}`, {url: url});
   }
