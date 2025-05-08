@@ -2,5 +2,6 @@
   <div class="bg-white dark:bg-gray-800 p-1 flex rounded-lg ">
     <input type="text" name="" [(ngModel)]="name" placeholder="Search" (keydown.enter)="search()" class="dark:bg-gray-800 outline-none">
     <app-close-icon (click)="clear()" [class.invisible]="name == ''" class="cursor-pointer"></app-close-icon>
+    <app-magnifier-icon (click)="search()" class="md:hidden"></app-magnifier-icon>
   </div>
 </div>

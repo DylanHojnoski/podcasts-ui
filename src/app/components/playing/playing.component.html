@@ -1,11 +1,42 @@
-<div *ngIf="playing != undefined" class="flex flex-col w-full justify-center bg-gray-400 dark:bg-gray-900">
-  <div class="w-full flex justify-between p-1 px-3">
-    <h2>{{playing.title}}</h2>
-    <div *ngIf="queue.length > 0" class="w-64 truncate flex gap-4 cursor-pointer">
-      <app-play-next-icon (click)="next()"></app-play-next-icon>
-      {{queue[0].title}}
+<audio [src]="playing?.audio" controls autoplay #audio class="hidden"></audio>
+<div *ngIf="playing != undefined" class="flex flex-col md:flex-row w-full p-2 justify-between items-center bg-gray-400 dark:bg-gray-900">
+  <div class="flex gap-4">
+    <div class="flex flex-col">
+      <h2 class="line-clamp-1 md:line-clamp-none">{{playing.title}}</h2>
+      <a [routerLink]="['/feed', playing.feed_id]" class="text-gray-800 dark:text-gray-400">{{playing.feed_name}}</a>
     </div>
-    <app-close-icon (click)="clear()" class="cursor-pointer"></app-close-icon>
+    <app-close-icon (click)="clear()" class="md:hidden cursor-pointer"></app-close-icon>
   </div>
-  <audio [src]="playing.audio" controls autoplay></audio>
+
+  <div class="flex gap-4 justify-center items-center md:fixed md:left-1/2 md:-translate-x-1/2">
+    <div class="flex flex-col">
+      <div class="flex gap-4 justify-center">
+        <app-skip-backward-icon class="invisible"></app-skip-backward-icon>
+        <app-skip-backward-icon  (click)="skipBackward()" class="cursor-pointer"></app-skip-backward-icon>
+        <div>
+          <app-play-icon *ngIf="audio.paused" (click)="play()" class="cursor-pointer"></app-play-icon>
+          <app-pause-icon *ngIf="!audio.paused" (click)="pause()" class="cursor-pointer"></app-pause-icon>
+        </div>
+        <app-skip-forward-icon (click)="skipForward()" class="cursor-pointer"></app-skip-forward-icon>
+        <app-play-next-icon (click)="next()" [class.invisible]="queue.length <= 0" class="cursor-pointer"></app-play-next-icon>
+      </div>
+      <div class="flex gap-2">
+
+        {{ audio.currentTime | secondsToTime }}
+        <input type="range" [value]="audio.currentTime" (input)="onTimeChange($event)" id="volume" name="volume" min="0" max="{{audio.duration}}" class="slider bg-gray-400 dark:bg-gray-900 md:w-96" />
+        {{ audio.duration | secondsToTime }}
+      </div>
+    </div>
+  </div>
+
+  <div class="items-center gap-4 hidden md:flex">
+    <div class="flex gap-2">
+      <div *ngIf="audio != undefined" (click)="toggleMute()">
+        <app-sound-icon *ngIf="audio.volume > 0"></app-sound-icon>
+        <app-mute-icon *ngIf="audio.volume <= 0"></app-mute-icon>
+      </div>
+      <input type="range" (input)="onVolumeChange($event)" id="volume" name="volume" min="0" max="1" step="0.1" class="slider bg-gray-400 dark:bg-gray-900 w-16" />
+    </div>
+    <app-close-icon (click)="clear()" class="hidden md:block cursor-pointer"></app-close-icon>
+  </div>
 </div>

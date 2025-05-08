@@ -44,6 +44,14 @@ import { CloseIconComponent } from './components/icons/close-icon/close-icon.com
 import { UploadIconComponent } from './components/icons/upload-icon/upload-icon.component';
 import { DownloadIconComponent } from './components/icons/download-icon/download-icon.component';
 import { PlayNextIconComponent } from './components/icons/play-next-icon/play-next-icon.component';
+import { MuteIconComponent } from './components/icons/mute-icon/mute-icon.component';
+import { SkipForwardIconComponent } from './components/icons/skip-forward-icon/skip-forward-icon.component';
+import { SkipBackwardIconComponent } from './components/icons/skip-backward-icon/skip-backward-icon.component';
+import { SoundIconComponent } from './components/icons/sound-icon/sound-icon.component';
+import { PauseIconComponent } from './components/icons/pause-icon/pause-icon.component';
+import { SecondsToTimePipe } from './helpers/seconds-to-time.pipe';
+import { HamburgerIconComponent } from './components/icons/hamburger-icon/hamburger-icon.component';
+import { MagnifierIconComponent } from './components/icons/magnifier-icon/magnifier-icon.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -90,7 +98,15 @@ const routes: Routes = [
     CloseIconComponent,
     UploadIconComponent,
     DownloadIconComponent,
-    PlayNextIconComponent
+    PlayNextIconComponent,
+    MuteIconComponent,
+    SkipForwardIconComponent,
+    SkipBackwardIconComponent,
+    SoundIconComponent,
+    PauseIconComponent,
+    SecondsToTimePipe,
+    HamburgerIconComponent,
+    MagnifierIconComponent
   ],
   imports: [
     BrowserModule,

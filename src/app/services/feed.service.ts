@@ -4,6 +4,10 @@ import { Observable } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { Feed } from '../models/feed'
 import { Category } from '../models/category'
+import { AppState } from '../state/app.state'
+import { Store, select } from '@ngrx/store'
+import { User } from '../models/user'
+import { selectUser } from '../state/user/user.selector'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +15,12 @@ import { Category } from '../models/category'
 
 export class FeedService {
   private url = "feeds"
-  constructor(private http: HttpClient) {}
+  private user: User | undefined = undefined
+
+  constructor(private http: HttpClient, private store: Store<AppState>) {
+    this.store.select(selectUser).subscribe(u => this.user = u);
+  }
+
 
   public getFeed() : Observable<Feed[]> {
     return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}`);
@@ -25,7 +34,7 @@ export class FeedService {
     let params = new HttpParams();
     params = params.set("limit", limit);
 
-    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/category/${categoryID}`, { params: params, withCredentials: true});
+    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/category/${categoryID}`, { params: params });
   }
 
   public getFeedCategories() : Observable<Category[]> {
@@ -50,15 +59,15 @@ export class FeedService {
   }
 
   public getFollowedFeeds() : Observable<Feed[]> {
-    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/follows`, { withCredentials: true });
+    return this.http.get<Feed[]>(`${environment.apiUrl}/${this.url}/follows`, { withCredentials: this.user != undefined });
   }
 
   public followFeed(feedID: string) : Observable<Feed> {
-    return this.http.post<Feed>(`${environment.apiUrl}/${this.url}/follows`, { id: feedID }, { withCredentials: true });
+    return this.http.post<Feed>(`${environment.apiUrl}/${this.url}/follows`, { id: feedID }, { withCredentials: this.user != undefined});
   }
 
   public deleteFollowFeed(feedID: string) : Observable<Object> {
-    return this.http.delete(`${environment.apiUrl}/${this.url}/follows/${feedID}`, { withCredentials: true });
+    return this.http.delete(`${environment.apiUrl}/${this.url}/follows/${feedID}`, { withCredentials: this.user != undefined });
   }
 
 }
