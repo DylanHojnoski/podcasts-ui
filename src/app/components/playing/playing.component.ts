@@ -79,6 +79,7 @@ export class PlayingComponent implements OnInit {
     if (this.queue.length > 0) {
       this.store.dispatch(setPlaying({ playing: this.queue[0]}));
       this.viewed = false;
+      this.play();
     }
   }
 
