@@ -16,6 +16,7 @@ export class PostsComponent {
   hours: string = "";
   minutes: string = "";
   inQueue: Boolean = false;
+  @Input() hovered: Boolean = false;
 
   public constructor(private store: Store<AppState>) { }
 

@@ -7,7 +7,7 @@
       <div class="flex w-full justify-between">
         <div class="flex gap-4 items-center">
           <h1 class="text-3xl">{{ feed.name }}</h1>
-          <div *ngIf="user != undefined">
+          <div *ngIf="user != undefined" class="hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg p-1">
             <button *ngIf="!followed" (click)="follow()">Follow</button>
             <button *ngIf="followed" (click)="unfollow()">Unfollow</button>
           </div>
@@ -15,7 +15,7 @@
         <a [href]="feed.url" target="_blank">RSS</a>
       </div>
       <div class="flex gap-4">
-        <a *ngFor="let category of feed.categories" [routerLink]="['/category', category.id]" class="bg-sky-100 p-1 rounded-lg">{{ category.title }}</a>
+        <a *ngFor="let category of feed.categories" [routerLink]="['/category', category.id]" class="bg-sky-100 dark:bg-sky-800 p-1 rounded-lg">{{ category.title }}</a>
       </div>
       <p [innerHTML]="feed.description"></p>
     </div>
@@ -24,14 +24,14 @@
 
   <div class="flex">
     <span>Sort:</span>
-    <select [(ngModel)]="order" (change)="loadPosts()" class="p-1 rounded-lg ml-2">
+    <select [(ngModel)]="order" (change)="loadPosts()" class="p-1 rounded-lg ml-2 dark:bg-gray-600">
       <option value="{{OrderEnum.desc}}" selected="selected">Newest</option>
       <option value="{{OrderEnum.asc}}">Oldest</option>
     </select>
   </div>
   <div class="flex">
     <span>Filter:</span>
-    <select [(ngModel)]="unviewed" (change)="loadPosts()" class="p-1 rounded-lg ml-2">
+    <select [(ngModel)]="unviewed" (change)="loadPosts()" class="p-1 rounded-lg ml-2 dark:bg-gray-600">
       <option value="false" selected="selected">All</option>
       <option value="true">Unviewed</option>
     </select>

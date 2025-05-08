@@ -1,14 +1,14 @@
 <div class="flex flex-col justify-center gap-4">
 <label class="text-center"> Username
-  <input type="text" name="username" [(ngModel)]="username" placeholder="Username">
+  <input type="text" name="username" [(ngModel)]="username" placeholder="Username" class="p-1 rounded-lg bg-gray-200 dark:bg-gray-600 outline-none">
 </label>
 
 <label class="text-center"> Password
-  <input type="password" name="password" [(ngModel)]="password" placeholder="Password">
+  <input type="password" name="password" [(ngModel)]="password" placeholder="Password" class="p-1 rounded-lg bg-gray-200 dark:bg-gray-600 outline-none">
 </label>
 
 <label class="text-center"> Repeat Password
-  <input type="password" name="repeatPassword" [(ngModel)]="repeatPassword" placeholder="Password">
+  <input type="password" name="repeatPassword" [(ngModel)]="repeatPassword" placeholder="Password" class="p-1 rounded-lg bg-gray-200 dark:bg-gray-600 outline-none">
 </label>
 
 <button (click)="createAccount()">Create Account</button>

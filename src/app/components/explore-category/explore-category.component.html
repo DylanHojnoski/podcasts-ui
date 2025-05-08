@@ -1,7 +1,7 @@
 <div *ngIf="feeds.length >= 9">
   <div  class="flex gap-4">
     <h2 class="text-xl">{{ title }}</h2>
-    <a [routerLink]="['/category', category]" class="flex items-center bg-gray-100 justify-between max-w-32">View more ></a>
+    <a [routerLink]="['/category', category]" class="flex items-center justify-between max-w-32">View more ></a>
   </div>
   <app-feeds [feeds]="feeds"></app-feeds>
 </div>

@@ -14,7 +14,6 @@ export class SearchPageComponent {
 
   public constructor(private route: ActivatedRoute, private feedService: FeedService) { }
 
-
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.name = params.get('name');
@@ -23,6 +22,4 @@ export class SearchPageComponent {
       }
     })
   }
-
-
 }

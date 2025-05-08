@@ -1,17 +1,17 @@
-<div class="m-2 p-2 border-black border-b-2 ">
+<div [ngClass]="{'border-black dark:border-gray-100': !hovered, 'border-blue-500': hovered}" class="m-2 p-2  border-b-2 ">
 
   <div class="flex items-center">
     <h3 class="text-lg">{{ post.title }}</h3>
     <span class="ml-4">{{ post.published_at | date: 'shortDate'}}</span>
   </div>
-  <a [routerLink]="['/feed', post.feed_id]" class="text-gray-800">{{ post.feed_name}}</a>
+  <a [routerLink]="['/feed', post.feed_id]" class="text-gray-800 dark:text-gray-400">{{ post.feed_name}}</a>
 
   <div class="p-2">
     <button (click)="toggleDescription()" class="flex">
       Description
       <div class="ml-2 self-center">
-        <img src="../../../assets/down-arrow.png" class="w-2" *ngIf="!descriptionActive" />
-        <img src="../../../assets/up-arrow.png" class="w-2" *ngIf="descriptionActive" />
+        <app-down-arrow-icon *ngIf="!descriptionActive"></app-down-arrow-icon>
+        <app-up-arrow-icon *ngIf="descriptionActive"></app-up-arrow-icon>
       </div>
     </button>
     <p *ngIf="descriptionActive" [innerHTML]="post.description"></p>
@@ -19,9 +19,9 @@
 
 
   <div class="flex gap-4">
-    <button (click)="play(post)">Play</button>
-    <p *ngIf="post.viewed">Viewed</p>
+    <app-play-icon (click)="play(post)" class="cursor-pointer"></app-play-icon>
+    <app-checkmark-icon *ngIf="post.viewed"></app-checkmark-icon>
     <p>{{post.duration}}</p>
-    <button *ngIf="!inQueue" (click)="addToQueue(post)">Add to queue</button>
+    <app-add-icon *ngIf="!inQueue" (click)="addToQueue(post)" class="cursor-pointer"></app-add-icon>
   </div>
 </div>

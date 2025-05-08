@@ -1,7 +1,7 @@
 <div class="w-full flex flex-col items-center  justify-center gap-4">
   <div class="flex flex-col items-center justify-center max-w-96">
   <h1 class="text-lg w-fit mb-4">Search Results: {{ name }}</h1>
-    <a [routerLink]="['/feed', feed.id]" *ngFor="let feed of feeds" class="flex items-center gap-4 p-2 hover:bg-gray-200 rounded-lg overflow-hidden w-full">
+    <a [routerLink]="['/feed', feed.id]" *ngFor="let feed of feeds" class="flex items-center gap-4 p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg overflow-hidden w-full">
         <img src={{feed.image}} alt={{feed.name}} loading="lazy" class="max-w-16">
         <h2 class="h-full ">{{ feed.name }}</h2>
     </a>

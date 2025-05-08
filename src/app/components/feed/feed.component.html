@@ -1,10 +1,6 @@
-<div *ngIf="feed != undefined" class="max-h-52 h-full p-2 hover:bg-gray-200 rounded-lg overflow-hidden w-fit">
-  <a [routerLink]="['/feed', feed.id]" class="flex items-center  justify-between max-w-32">
-    <div class="flex flex-col gap-2">
-      <img src={{feed.image}} alt={{feed.name}} loading="lazy" class="max-w-32">
-      <div class="flex flex-col">
-        <h2 class="h-full line-clamp-2">{{ feed.name }}</h2>
-      </div>
-    </div>
-  </a>
-</div>
+<a [routerLink]="['/feed', feed.id]" *ngIf="feed != undefined" class="flex flex-col h-full p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg overflow-hidden w-36">
+  <img src={{feed.image}} alt={{feed.name}} loading="lazy" class="w-32">
+  <div class="flex flex-col">
+    <h2 class="h-full line-clamp-2">{{ feed.name }}</h2>
+  </div>
+</a>

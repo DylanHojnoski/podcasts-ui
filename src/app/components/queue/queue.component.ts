@@ -16,7 +16,7 @@ export class QueueComponent {
   @ViewChildren("queueItem") items!: QueryList<ElementRef<HTMLDivElement>>
   @ViewChild("container") container!: ElementRef<HTMLDivElement>
   currentDragged: number = 0;
-  draggedOver: number = 0
+  draggedOver: number = -1
 
   public constructor(private store: Store<AppState>) { }
 
@@ -36,23 +36,14 @@ export class QueueComponent {
 
       div.nativeElement.addEventListener("dragover", () => {
         this.draggedOver = Number.parseInt(div.nativeElement.id);
-        const element = div.nativeElement.lastChild?.firstChild;
-        if (element instanceof HTMLElement) {
-        element.classList.remove("border-black");
-        element.classList.add("border-sky-600");
-        }
       })
 
       div.nativeElement.addEventListener("dragend", () => {
         this.store.dispatch(moveToIndexInQueue({ start: this.currentDragged, end: this.draggedOver }))
+        this.draggedOver = -1;
       });
 
       div.nativeElement.addEventListener("dragleave", () => {
-        const element = div.nativeElement.lastChild?.firstChild;
-        if (element instanceof HTMLElement) {
-        element.classList.remove("border-sky-600");
-        element.classList.add("border-black");
-        }
 
       });
     });

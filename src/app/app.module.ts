@@ -33,6 +33,17 @@ import { CategoryPageComponent } from './components/category-page/category-page.
 import { NewPostsComponent } from './components/new-posts/new-posts.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
+import { DarkModeComponent } from './components/dark-mode/dark-mode.component';
+import { PlayIconComponent } from './components/icons/play-icon/play-icon.component';
+import { AddIconComponent } from './components/icons/add-icon/add-icon.component';
+import { CheckmarkIconComponent } from './components/icons/checkmark-icon/checkmark-icon.component';
+import { MoveIconComponent } from './components/icons/move-icon/move-icon.component';
+import { UpArrowIconComponent } from './components/icons/up-arrow-icon/up-arrow-icon.component';
+import { DownArrowIconComponent } from './components/icons/down-arrow-icon/down-arrow-icon.component';
+import { CloseIconComponent } from './components/icons/close-icon/close-icon.component';
+import { UploadIconComponent } from './components/icons/upload-icon/upload-icon.component';
+import { DownloadIconComponent } from './components/icons/download-icon/download-icon.component';
+import { PlayNextIconComponent } from './components/icons/play-next-icon/play-next-icon.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -68,7 +79,18 @@ const routes: Routes = [
     CategoryPageComponent,
     NewPostsComponent,
     SearchComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    DarkModeComponent,
+    PlayIconComponent,
+    AddIconComponent,
+    CheckmarkIconComponent,
+    MoveIconComponent,
+    UpArrowIconComponent,
+    DownArrowIconComponent,
+    CloseIconComponent,
+    UploadIconComponent,
+    DownloadIconComponent,
+    PlayNextIconComponent
   ],
   imports: [
     BrowserModule,
