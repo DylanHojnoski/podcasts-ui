@@ -19,10 +19,12 @@ export class PostService {
     return this.http.get<Post[]>(`${environment.apiUrl}/${this.url}`, { params: params, withCredentials: true })
   }
 
-  public getFeedPosts(id: string, order: Order, unviewed: boolean) : Observable<Post[]> {
+  public getFeedPosts(id: string, order: Order, unviewed: boolean, limit: number, offset: number) : Observable<Post[]> {
     let params = new HttpParams();
     params = params.set("order", order);
     params = params.set("unviewed", unviewed);
+    params = params.set("limit", limit);
+    params = params.set("offset", offset);
     return this.http.get<Post[]>(`${environment.apiUrl}/${this.url}/${id}`, { params: params, withCredentials: true })
   }
 

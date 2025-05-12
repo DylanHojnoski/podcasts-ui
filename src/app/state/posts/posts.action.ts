@@ -3,7 +3,7 @@ import { Order, Post } from "src/app/models/post";
 
 export const loadPosts = createAction(
   'Load Posts',
-  props<{ feedId: string, order: Order, unviewed: boolean}>()
+  props<{ feedId: string, order: Order, unviewed: boolean, limit: number, offset: number}>()
 );
 
 export const loadPostsSuccess = createAction(

@@ -56,6 +56,8 @@ import { HamburgerIconComponent } from './components/icons/hamburger-icon/hambur
 import { MagnifierIconComponent } from './components/icons/magnifier-icon/magnifier-icon.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { ɵBrowserAnimationBuilder } from '@angular/animations';
+import { LeftArrowIconComponent } from './components/icons/left-arrow-icon/left-arrow-icon.component';
+import { RightArrowIconComponent } from './components/icons/right-arrow-icon/right-arrow-icon.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -110,7 +112,9 @@ const routes: Routes = [
     PauseIconComponent,
     SecondsToTimePipe,
     HamburgerIconComponent,
-    MagnifierIconComponent
+    MagnifierIconComponent,
+    LeftArrowIconComponent,
+    RightArrowIconComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -28,8 +29,10 @@ export class FeedPageComponent {
   unviewed: boolean = false;
   user: User | undefined = undefined;
   fullDescription = false;
+  page: number = 0;
+  limit: number = 20;
 
-  public constructor(private store: Store<AppState>, private route: ActivatedRoute, private feedService: FeedService) { }
+  public constructor(private store: Store<AppState>, private route: ActivatedRoute, private feedService: FeedService, private viewportScroller: ViewportScroller) { }
 
   ngOnInit(): void {
     if (this.feedId != null) {
@@ -56,7 +59,23 @@ export class FeedPageComponent {
 
   loadPosts() {
     if (this.feedId != null) {
-      this.store.dispatch(loadPosts({ feedId: this.feedId, order: this.order, unviewed: this.unviewed}));
+      this.store.dispatch(loadPosts({ feedId: this.feedId, order: this.order, unviewed: this.unviewed, limit: this.limit, offset: this.page*this.limit}));
+    }
+  }
+
+  nextPage() {
+    if (this.feedId != null && this.posts.length >= this.limit) {
+      this.page++;
+      this.store.dispatch(loadPosts({ feedId: this.feedId, order: this.order, unviewed: this.unviewed, limit: this.limit, offset: this.page*this.limit}));
+      this.viewportScroller.scrollToPosition([0,0]);
+    }
+  }
+
+  prevPage() {
+    if (this.feedId != null && this.page > 0) {
+      this.page--;
+      this.store.dispatch(loadPosts({ feedId: this.feedId, order: this.order, unviewed: this.unviewed, limit: this.limit, offset: this.page*this.limit}));
+      this.viewportScroller.scrollToPosition([0,0]);
     }
   }
 

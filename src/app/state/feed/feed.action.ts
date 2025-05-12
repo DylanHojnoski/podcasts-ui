@@ -28,7 +28,7 @@ export const loadFollowedFeedsFailure = createAction(
 
 export const loadFeedsForCategory = createAction(
   'Load Feeds For Category',
-  props<{ categoryID: string, limit: number }>()
+  props<{ categoryID: string, limit: number, offset: number }>()
 );
 
 export const loadFeedsForCategorySuccess = createAction(

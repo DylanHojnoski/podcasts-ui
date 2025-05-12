@@ -1,2 +1,7 @@
 <h2 class="text-4xl pb-4">{{ title }}</h2>
 <app-feeds [feeds]="feeds"></app-feeds>
+<div class="flex gap-4 justify-center items-center">
+  <app-left-arrow-icon [class.invisible]="page <= 0" (click)="prevPage()"  class="cursor-pointer"></app-left-arrow-icon>
+  <div>Page {{page+1}}</div>
+  <app-right-arrow-icon [class.invisible]="feeds.length < limit"(click)="nextPage()" class="cursor-pointer"></app-right-arrow-icon>
+</div>

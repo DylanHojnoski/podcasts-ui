@@ -15,7 +15,7 @@ export class PostEffects {
                            this.actions.pipe(
                              ofType(loadPosts),
                              switchMap((props) =>
-                                       from(this.postService.getFeedPosts(props.feedId, props.order, props.unviewed)).pipe(
+                                       from(this.postService.getFeedPosts(props.feedId, props.order, props.unviewed, props.limit, props.offset)).pipe(
                                          map((posts) => loadPostsSuccess({posts: posts})),
                                            catchError((error) => of(loadPostsFailure({ error })))
                                        )

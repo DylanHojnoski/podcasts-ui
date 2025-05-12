@@ -45,7 +45,7 @@ export class FeedEffects {
                            this.actions.pipe(
                              ofType(loadFeedsForCategory),
                              switchMap((props) =>
-                                       from(this.feedService.getFeedForCategory(props.categoryID, props.limit)).pipe(
+                                       from(this.feedService.getFeedForCategory(props.categoryID, props.limit, props.offset)).pipe(
                                          map((feeds) => {
                                            return loadFeedsForCategorySuccess({feeds: feeds});
                                          }
