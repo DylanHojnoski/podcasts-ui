@@ -1,7 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Post } from "src/app/models/post";
 import { addToQueue, clearPlaying, clearQueue, loadPlaying, loadQueue, moveBackwardInQueue, moveForwardInQueue, moveToIndexInQueue, removeFromQueue, setPlaying } from "./playing.action";
-import { queue } from "rxjs";
 
 export interface PlayingState {
   playing: Post | undefined;
@@ -33,10 +32,10 @@ export const playingReducer = createReducer(
   on(loadPlaying, (state) => {
     const data = localStorage.getItem("playing");
     if (data != null ||  data != undefined) {
-      const queue =  JSON.parse(data) as Post
+      const playing =  JSON.parse(data) as Post
       return ({
         ...state,
-        playing: queue
+        playing: playing
       })
     }
     return ({

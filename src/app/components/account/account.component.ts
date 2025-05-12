@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { FeedService } from 'src/app/services/feed.service';
 import { AppState } from 'src/app/state/app.state';
@@ -15,7 +16,7 @@ export class AccountComponent {
 
   user: User | undefined = undefined;
 
-  public constructor(private store: Store<AppState>, private feedService: FeedService) { }
+  public constructor(private store: Store<AppState>, private feedService: FeedService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.store.select(selectUser).subscribe(user => this.user = user);
@@ -42,7 +43,14 @@ export class AccountComponent {
 
     const formData = new FormData();
     formData.append("opml", file)
-    this.feedService.importOPML(formData).subscribe()
+    this.feedService.importOPML(formData).subscribe({
+      next: (p) => {
+        this.toastr.success("Imported " + p.length + " podcasts");
+      },
+      error: (err) => {
+        this.toastr.error("Failed importing podcasts");
+      }
+    });
 
   }
 }

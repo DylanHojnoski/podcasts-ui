@@ -21,7 +21,6 @@
         <app-play-next-icon (click)="next()" [class.invisible]="queue.length <= 0" class="cursor-pointer"></app-play-next-icon>
       </div>
       <div class="flex gap-2">
-
         {{ audio.currentTime | secondsToTime }}
         <input type="range" [value]="audio.currentTime" (input)="onTimeChange($event)" id="volume" name="volume" min="0" max="{{audio.duration}}" class="slider bg-gray-400 dark:bg-gray-900 md:w-96" />
         {{ audio.duration | secondsToTime }}

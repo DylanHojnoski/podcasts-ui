@@ -27,6 +27,7 @@ export class FeedPageComponent {
   OrderEnum = Order;
   unviewed: boolean = false;
   user: User | undefined = undefined;
+  fullDescription = false;
 
   public constructor(private store: Store<AppState>, private route: ActivatedRoute, private feedService: FeedService) { }
 
@@ -78,6 +79,10 @@ export class FeedPageComponent {
     if (this.feedId != undefined) {
       this.store.dispatch(removeFeedFollow({ id: this.feedId }))
     }
+  }
+
+  toggleDescription() {
+    this.fullDescription = !this.fullDescription;
   }
 
 }

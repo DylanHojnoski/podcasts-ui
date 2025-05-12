@@ -1,6 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { FeedComponent } from './components/feed/feed.component';
@@ -52,6 +54,8 @@ import { PauseIconComponent } from './components/icons/pause-icon/pause-icon.com
 import { SecondsToTimePipe } from './helpers/seconds-to-time.pipe';
 import { HamburgerIconComponent } from './components/icons/hamburger-icon/hamburger-icon.component';
 import { MagnifierIconComponent } from './components/icons/magnifier-icon/magnifier-icon.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ɵBrowserAnimationBuilder } from '@angular/animations';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -111,11 +115,14 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
+    DragDropModule,
+    BrowserAnimationsModule,
     FormsModule,
     StoreModule.forRoot({feed: feedReducer, playing: playingReducer, posts: postsReducer, user: userReducer}),
     EffectsModule.forRoot([FeedEffects, PostEffects, UserEffects]),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ToastrModule.forRoot(),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

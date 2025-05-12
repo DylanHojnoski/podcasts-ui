@@ -1,13 +1,13 @@
 <div *ngIf="user != undefined" class="flex flex-col gap-4 justify-center items-center">
   <div>{{ user.name }}</div>
   <button (click)="logout()" class="w-32">Logout</button>
-  <div class="cursor-pointer flex gap-4 ">
-  <app-upload-icon></app-upload-icon>
+  <label class="cursor-pointer flex gap-4 ">
+    <app-upload-icon></app-upload-icon>
     Import OPML
     <input type="file" accept=".opml" (change)="importOPML($event)" class="hidden" >
-  </div>
-  <div (click)="getOPML()" class="cursor-pointer flex gap-4 ">
-    <app-download-icon></app-download-icon>
-    Export OPML
-  </div>
+  </label>
+    <div (click)="getOPML()" class="cursor-pointer flex gap-4 ">
+      <app-download-icon></app-download-icon>
+      Export OPML
+    </div>
 </div>

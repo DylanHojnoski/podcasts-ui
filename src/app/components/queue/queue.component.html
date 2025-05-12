@@ -1,11 +1,14 @@
 
 <button (click)="clear()">Clear</button>
-<div #container class="p-1 -m-1">
-  <div *ngFor="let post of queue; let i = index" class="flex flex-row queue-item" id="{{i}}" draggable="true" #queueItem>
+<div #container class="p-1 -m-1" cdkDropList (cdkDropListDropped)="drop($event)">
+  @for (post of queue; track post.id; let i = $index) {
+  <div class="flex flex-row queue-item" id="{{i}}" cdkDrag #queueItem>
+    <p *cdkDragPreview class="rounded-lg p-2 dark:text-gray-100 dark:bg-gray-600">{{ post.title }}</p>
     <div class="flex flex-col items-center gap-4 justify-center">
-      <app-move-icon class="cursor-move"></app-move-icon>
+      <app-move-icon cdkDragHandle class="cursor-move touch-none"></app-move-icon>
       <app-close-icon (click)="remove(i)" class="cursor-pointer"></app-close-icon>
     </div>
     <app-posts [hovered]="i == draggedOver" [post]="post" class="w-full"></app-posts>
   </div>
+  }
 </div>

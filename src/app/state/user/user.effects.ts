@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { AppState } from "../app.state";
 import { loadFollowedFeeds } from "../feed/feed.action";
+import { clearPlaying, clearQueue } from "../playing/playing.action";
 
 @Injectable()
 export class UserEffects {
@@ -72,6 +73,8 @@ export class UserEffects {
                                        from(this.userService.logout()).pipe(
                                          map(() => {
                                            this.router.navigate(['/home']);
+                                           this.store.dispatch(clearQueue());
+                                           this.store.dispatch(clearPlaying());
                                            return logoutSuccess();
                                          }
                                             ),

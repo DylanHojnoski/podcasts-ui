@@ -3,10 +3,6 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../models/user";
 import { environment } from "src/environments/environment";
-import { Store } from "@ngrx/store";
-import { AppState } from "../state/app.state";
-import { selectUser } from "../state/user/user.selector";
-
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +10,8 @@ import { selectUser } from "../state/user/user.selector";
 
 export class UserService {
   private url = "users"
-  private user: User | undefined = undefined
 
-  constructor(private http: HttpClient, private store: Store<AppState>) {
-    this.store.select(selectUser).subscribe(u => this.user = u);
-  }
+  constructor(private http: HttpClient) {}
 
   public createUser(username: string, password: string) : Observable<User> {
     return this.http.post<User>(`${environment.apiUrl}/${this.url}`, {username: username, password: password});
