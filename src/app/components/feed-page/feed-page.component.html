@@ -1,7 +1,7 @@
 <div *ngIf="feed != undefined">
   <div class="flex flex-col md:flex-row items-center gap-4 w-full">
     <div class="flex flex-col gap-4">
-      <img src={{feed.image}} alt={{feed.name}} class="w-52">
+      <img src={{feed.image}} alt={{feed.name}} class="w-52 max-h-52">
     </div>
     <div class="flex flex-col gap-2 w-full">
       <div class="flex w-full justify-between items-center">
@@ -44,15 +44,14 @@
       </select>
     </div>
   </div>
-  <div *ngIf="posts.length > 0  && posts[0].feed_id == feed.id">
+  <div>
     <div *ngFor="let post of posts">
       <app-posts *ngIf="post.feed_id == feed.id"[post]="post"></app-posts>
     </div>
-    <div class="flex gap-4 justify-center items-center">
+    <div class="flex gap-4 p-4 justify-center items-center">
       <app-left-arrow-icon [class.invisible]="page <= 0" (click)="prevPage()"  class="cursor-pointer"></app-left-arrow-icon>
       <div>Page {{page+1}}</div>
       <app-right-arrow-icon [class.invisible]="posts.length < limit"(click)="nextPage()" class="cursor-pointer"></app-right-arrow-icon>
     </div>
-    <!--<button (click)="loadMore(feed.id)" class="text-lg">Load More</button>-->
   </div>
 </div>

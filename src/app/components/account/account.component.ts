@@ -45,6 +45,9 @@ export class AccountComponent {
     formData.append("opml", file)
     this.feedService.importOPML(formData).subscribe({
       next: (p) => {
+        if (p == null) {
+          this.toastr.error("Failed importing podcasts");
+        }
         this.toastr.success("Imported " + p.length + " podcasts");
       },
       error: (err) => {

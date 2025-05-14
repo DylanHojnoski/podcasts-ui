@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -13,7 +14,7 @@ import { selectAllFeeds, selectCategoryFeeds } from 'src/app/state/feed/feed.sel
 })
 export class CategoryPageComponent {
 
-  public constructor(private store: Store<AppState>,private route: ActivatedRoute) { }
+  public constructor(private store: Store<AppState>,private route: ActivatedRoute, private viewportScroller: ViewportScroller) { }
   categoryId = this.route.snapshot.paramMap.get('id');
   feeds: Feed[] = [];
   title = "";
@@ -39,6 +40,7 @@ export class CategoryPageComponent {
     if (this.categoryId != null && this.feeds.length >= this.limit) {
       this.page++;
       this.store.dispatch(loadFeedsForCategory({ categoryID: this.categoryId, limit: this.limit, offset: this.page*this.limit}));
+      this.viewportScroller.scrollToPosition([0, 0]);
     }
   }
 
@@ -46,6 +48,7 @@ export class CategoryPageComponent {
     if (this.categoryId != null && this.page > 0) {
       this.page--;
       this.store.dispatch(loadFeedsForCategory({ categoryID: this.categoryId, limit: this.limit, offset: this.page*this.limit}));
+      this.viewportScroller.scrollToPosition([0, 0]);
     }
   }
 }

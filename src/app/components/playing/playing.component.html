@@ -22,7 +22,7 @@
       </div>
       <div class="flex gap-2">
         {{ audio.currentTime | secondsToTime }}
-        <input type="range" [value]="audio.currentTime" (input)="onTimeChange($event)" id="volume" name="volume" min="0" max="{{audio.duration}}" class="slider bg-gray-400 dark:bg-gray-900 md:w-96" />
+        <input type="range" [value]="audio.currentTime" (input)="onTimeChange($event)" id="volume" name="volume" min="0" max="{{audio.duration}}" class="slider bg-gray-400 dark:bg-gray-900 md:w-96 cursor-pointer" />
         {{ audio.duration | secondsToTime }}
       </div>
     </div>
@@ -30,11 +30,11 @@
 
   <div class="items-center gap-4 hidden md:flex">
     <div class="flex gap-2">
-      <div *ngIf="audio != undefined" (click)="toggleMute()">
+      <div *ngIf="audio != undefined" (click)="toggleMute()" class="cursor-pointer">
         <app-sound-icon *ngIf="audio.volume > 0"></app-sound-icon>
         <app-mute-icon *ngIf="audio.volume <= 0"></app-mute-icon>
       </div>
-      <input type="range" (input)="onVolumeChange($event)" id="volume" name="volume" min="0" max="1" step="0.1" class="slider bg-gray-400 dark:bg-gray-900 w-16" />
+      <input type="range" (input)="onVolumeChange($event)" id="volume" name="volume" min="0" max="1" step="0.1" class="slider bg-gray-400 dark:bg-gray-900 w-16 cursor-pointer" />
     </div>
     <app-close-icon (click)="clear()" class="hidden md:block cursor-pointer"></app-close-icon>
   </div>
