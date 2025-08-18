@@ -1,6 +1,8 @@
 # PodcastsUi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
+<img width="3405" height="2060" alt="image" src="https://github.com/user-attachments/assets/a6ef1123-f941-4139-9c39-54cdb436abd1" />
+
+Frontend to listen to podcasts which relies on this backend: https://github.com/DylanHojnoski/rss-agg
 
 ## Development server
 
