@@ -1,13 +1,15 @@
-<div class="flex w-full gap-4 items-center justify-end md:justify-center  p-2 bg-gray-200 dark:bg-gray-600">
-  <div *ngIf="!hidden" class="absolute left-1/2 top-0 transform -translate-x-1/2 sm:static sm:left-auto sm:top-auto sm:transform-none">
+<div class="flex w-full gap-4 items-center justify-end md:justify-center  p-3 sm:p-2 bg-gray-200 dark:bg-gray-600">
+  <div  class="absolute left-1/2 top-0 transform -translate-x-1/2 sm:static sm:left-auto sm:top-auto sm:transform-none">
     <div   class="p-2 md:p-0 rounded-lg flex gap-4 flex-col sm:flex-row justify-center items-center bg-gray-200 dark:bg-gray-600">
       <app-search></app-search>
+      <div *ngIf="!hidden" class="flex gap-4 flex-col sm:flex-row justify-center items-center bg-gray-200 dark:bg-gray-600">
       <a [routerLink]="['/explore']" (click)="setHidden()">Explore</a>
       <a [routerLink]="['/home']" *ngIf="user != undefined" (click)="setHidden()">Library</a>
       <a [routerLink]="['/queue']" (click)="setHidden()">Queue</a>
       <a [routerLink]="['/login']" *ngIf="user == undefined" (click)="setHidden()">Login</a>
       <a [routerLink]="['/account']" *ngIf="user != undefined" (click)="setHidden()">Account</a>
       <app-dark-mode (click)="setHidden()"></app-dark-mode>
+      </div>
       <!-- <app-add-feed></app-add-feed> -->
     </div>
   </div>
