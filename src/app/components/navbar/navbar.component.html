@@ -2,17 +2,17 @@
   <div *ngIf="!hidden" class="absolute left-1/2 top-0 transform -translate-x-1/2 sm:static sm:left-auto sm:top-auto sm:transform-none">
     <div   class="p-2 md:p-0 rounded-lg flex gap-4 flex-col sm:flex-row justify-center items-center bg-gray-200 dark:bg-gray-600">
       <app-search></app-search>
-      <a [routerLink]="['/explore']">Explore</a>
-      <a [routerLink]="['/home']" *ngIf="user != undefined">Library</a>
-      <a [routerLink]="['/queue']">Queue</a>
-      <a [routerLink]="['/login']" *ngIf="user == undefined">Login</a>
-      <a [routerLink]="['/account']" *ngIf="user != undefined">Account</a>
-      <app-dark-mode></app-dark-mode>
+      <a [routerLink]="['/explore']" (click)="setHidden()">Explore</a>
+      <a [routerLink]="['/home']" *ngIf="user != undefined" (click)="setHidden()">Library</a>
+      <a [routerLink]="['/queue']" (click)="setHidden()">Queue</a>
+      <a [routerLink]="['/login']" *ngIf="user == undefined" (click)="setHidden()">Login</a>
+      <a [routerLink]="['/account']" *ngIf="user != undefined" (click)="setHidden()">Account</a>
+      <app-dark-mode (click)="setHidden()"></app-dark-mode>
       <!--<app-add-feed></app-add-feed>-->
     </div>
   </div>
-  <div class="self-start sm:hidden">
-    <app-hamburger-icon (click)="toggleNav()" ></app-hamburger-icon>
-    <!--<app-close-icon (click)="toggleNav()" [class.hidden]="!hidden" ></app-close-icon>-->
+  <div class="self-start sm:hidden cursor-pointer">
+    <app-hamburger-icon (click)="setUnhidden()" [class.hidden]="!hidden"></app-hamburger-icon>
+    <app-close-icon (click)="setHidden()" [class.hidden]="hidden" ></app-close-icon>
   </div>
 </div>

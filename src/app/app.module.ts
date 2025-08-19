@@ -58,6 +58,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { ɵBrowserAnimationBuilder } from '@angular/animations';
 import { LeftArrowIconComponent } from './components/icons/left-arrow-icon/left-arrow-icon.component';
 import { RightArrowIconComponent } from './components/icons/right-arrow-icon/right-arrow-icon.component';
+import { navReducer } from './state/nav/nav.reducer';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -122,7 +123,7 @@ const routes: Routes = [
     DragDropModule,
     BrowserAnimationsModule,
     FormsModule,
-    StoreModule.forRoot({feed: feedReducer, playing: playingReducer, posts: postsReducer, user: userReducer}),
+    StoreModule.forRoot({feed: feedReducer, playing: playingReducer, posts: postsReducer, user: userReducer, nav: navReducer}),
     EffectsModule.forRoot([FeedEffects, PostEffects, UserEffects]),
     RouterModule.forRoot(routes),
     ToastrModule.forRoot(),

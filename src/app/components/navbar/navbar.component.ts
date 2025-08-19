@@ -4,6 +4,8 @@ import { User } from 'src/app/models/user';
 import { AppState } from 'src/app/state/app.state';
 import { selectUser } from 'src/app/state/user/user.selector';
 import { HamburgerIconComponent } from '../icons/hamburger-icon/hamburger-icon.component';
+import { selectHidden } from 'src/app/state/nav/nav.selector';
+import { setHidden, setUnhidden } from 'src/app/state/nav/nav.action';
 
 @Component({
   selector: 'app-navbar',
@@ -20,14 +22,23 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     this.store.select(selectUser).subscribe(user => this.user = user);
+    this.store.select(selectHidden).subscribe(hidden => this.hidden = hidden);
   }
 
-  //ngAfterViewInit(): void {
-    //const element = this.hamburger.nativeElement as HTMLElement;
-    //this.hidden = getComputedStyle(element).display == "none";
-  //}
-
   toggleNav() {
-    this.hidden = !this.hidden;
+    if (this.hidden) {
+      setUnhidden();
+    }
+    else {
+      setHidden();
+    }
+  }
+
+  setHidden() {
+    this.store.dispatch(setHidden());
+  }
+
+  setUnhidden() {
+    this.store.dispatch(setUnhidden());
   }
 }

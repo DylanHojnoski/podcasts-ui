@@ -72,7 +72,7 @@ export class UserEffects {
                              switchMap(() =>
                                        from(this.userService.logout()).pipe(
                                          map(() => {
-                                           this.router.navigate(['/home']);
+                                           this.router.navigate(['/explore']);
                                            this.store.dispatch(clearQueue());
                                            this.store.dispatch(clearPlaying());
                                            return logoutSuccess();
