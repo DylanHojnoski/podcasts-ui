@@ -18,10 +18,12 @@
   </div>
 
 
-  <div class="flex gap-4">
+  <div class="flex sm:justify-start sm:flex-row flex-row-reverse justify-between gap-4">
     <app-play-icon (click)="play(post)" class="cursor-pointer"></app-play-icon>
+    <div class="flex gap-4">
     <app-checkmark-icon *ngIf="post.viewed"></app-checkmark-icon>
     <p>{{post.duration}}</p>
     <app-add-icon *ngIf="!inQueue" (click)="addToQueue(post)" class="cursor-pointer"></app-add-icon>
+    </div>
   </div>
 </div>

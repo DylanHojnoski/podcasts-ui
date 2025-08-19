@@ -1,6 +1,6 @@
 <audio [src]="playing?.audio" controls autoplay #audio class="hidden"></audio>
 <div *ngIf="playing != undefined" class="flex flex-col md:flex-row w-full p-2 justify-between items-center bg-gray-400 dark:bg-gray-900">
-  <div class="flex gap-4">
+  <div class="flex justify-between gap-4 w-full">
     <div class="flex flex-col">
       <h2 class="line-clamp-1 md:line-clamp-none">{{playing.title}}</h2>
       <a [routerLink]="['/feed', playing.feed_id]" class="text-gray-800 dark:text-gray-400">{{playing.feed_name}}</a>
