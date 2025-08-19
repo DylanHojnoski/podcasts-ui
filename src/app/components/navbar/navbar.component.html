@@ -8,7 +8,7 @@
       <a [routerLink]="['/login']" *ngIf="user == undefined" (click)="setHidden()">Login</a>
       <a [routerLink]="['/account']" *ngIf="user != undefined" (click)="setHidden()">Account</a>
       <app-dark-mode (click)="setHidden()"></app-dark-mode>
-      <!--<app-add-feed></app-add-feed>-->
+      <!-- <app-add-feed></app-add-feed> -->
     </div>
   </div>
   <div class="self-start sm:hidden cursor-pointer">
