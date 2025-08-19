@@ -2,6 +2,8 @@
 
 <img width="3405" height="2060" alt="image" src="https://github.com/user-attachments/assets/a6ef1123-f941-4139-9c39-54cdb436abd1" />
 
+You can find the deployed site here: https://dylanhojnoski.github.io/podcasts-ui/explore
+
 Frontend to listen to podcasts which relies on this backend: https://github.com/DylanHojnoski/rss-agg
 
 ## Development server
